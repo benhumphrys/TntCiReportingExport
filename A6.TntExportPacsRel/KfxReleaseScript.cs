@@ -78,6 +78,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             _open = true;
             _batchError = false;
             _standardAuditData = new StandardAuditData();
+            _meridioGenerator = null;
 
             return KfxReturnValue.KFX_REL_SUCCESS;
         }
@@ -173,7 +174,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                 LogMessage(message, ErrorMessage);
 
                 DeleteOutputFilePaths();
-                return KfxReturnValue.KFX_REL_ERROR;
+                return KfxReturnValue.KFX_REL_SUCCESS;
             }
             finally
             {
@@ -248,12 +249,12 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             // Get the settings and arrange the link values so that they are easy to retrieve.
             ReadSettings();
 
-            if (_documentCount == 1)
+            if (_meridioGenerator == null)
             {
                 // If this is the first document, create the batch-level data.
-                _meridioGenerator = new MeridioGenerator(_settings, (s, t) => LogMessage(s, t));
                 _misAuditData = GetMisAuditData("B_MISA6AuditPath", "A6.TntExportPacsRel");
                 _standardAuditData = GetStandardAuditData();
+                _meridioGenerator = new MeridioGenerator(_settings, (s, t) => LogMessage(s, t));
             }
 
             // Determine if we can run for this document, or whether to skip output.
