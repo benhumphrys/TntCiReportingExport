@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ProcessingBatch" xml:space="preserve">
+    <value>Processing batch "{0}"...</value>
+  </data>
+  <data name="WritingTextFile" xml:space="preserve">
+    <value>Writing text to "{0}"...</value>
+  </data>
+  <data name="GettingSettings" xml:space="preserve">
+    <value>Getting settings...</value>
+  </data>
+  <data name="BeginningExport" xml:space="preserve">
+    <value>Beginning export of document...</value>
+  </data>
+  <data name="IndexFieldTypeFriendlyName" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="FileCopiedTo" xml:space="preserve">
+    <value>File copied to "{0}".</value>
+  </data>
+  <data name="UnsupportedGenericType" xml:space="preserve">
+    <value>Unsupported generic type: {0}.</value>
+  </data>
+  <data name="OpeningScript" xml:space="preserve">
+    <value>Opening script...</value>
+  </data>
+  <data name="CopyingDocument" xml:space="preserve">
+    <value>Copying document...</value>
+  </data>
+  <data name="BadReleaseDocCall" xml:space="preserve">
+    <value>ReleaseDoc() called before OpenScript().</value>
+  </data>
+  <data name="ClosingScript" xml:space="preserve">
+    <value>Closing script...</value>
+  </data>
+  <data name="MissingRequiredField" xml:space="preserve">
+    <value>Missing required {0} field: {1}.</value>
+  </data>
+  <data name="IncompatibleDocClassDescription" xml:space="preserve">
+    <value>The Export Connector cannot be assigned to the document class due to the following errors:</value>
+  </data>
+  <data name="CannotWriteText" xml:space="preserve">
+    <value>Cannot write text file. {0}</value>
+  </data>
+  <data name="MovingFile" xml:space="preserve">
+    <value>Moving file "{0}" to "{1}"...</value>
+  </data>
+  <data name="BatchFieldTypeFriendlyName" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="KofaxFieldTypeFriendlyName" xml:space="preserve">
+    <value>Kofax</value>
+  </data>
+  <data name="ErrorFinalisingExport" xml:space="preserve">
+    <value>Error finalising export: {0}.  {1}</value>
+  </data>
+  <data name="CouldNotFindExpectedFile" xml:space="preserve">
+    <value>Could not find expected file at "{0}".</value>
+  </data>
+  <data name="MissingKofaxRegistryKey" xml:space="preserve">
+    <value>Missing Kofax Capture Registry key.</value>
+  </data>
+  <data name="ProcessingDocumentN" xml:space="preserve">
+    <value>Processing document {0}...</value>
+  </data>
+  <data name="ErrorWritingText" xml:space="preserve">
+    <value>Error writing text to final destination.  Attempt: {0}. {1}</value>
+  </data>
+  <data name="MissingServerPathValue" xml:space="preserve">
+    <value>Missing ServerPath value.</value>
+  </data>
+  <data name="CannotConvertValue" xml:space="preserve">
+    <value>Cannot convert value "{0}" to type {1}.</value>
+  </data>
+  <data name="ErrorCopyingDocument" xml:space="preserve">
+    <value>Error copying document to working directory.  Attempt: {0}. {1}</value>
+  </data>
+  <data name="DeletingExistingFile" xml:space="preserve">
+    <value>Deleting existing file "{0}"...</value>
+  </data>
+  <data name="LogDirectoryDoesNotExist" xml:space="preserve">
+    <value>Logs directory path "{0}" does not exist.</value>
+  </data>
+  <data name="UnableToCreateTemp" xml:space="preserve">
+    <value>Unable to create temp file after {0} retries.</value>
+  </data>
+  <data name="ErrorExportingDocument" xml:space="preserve">
+    <value>Error exporting document: {0}.  {1}</value>
+  </data>
+  <data name="BadCloseScriptCall" xml:space="preserve">
+    <value>CloseScript() called before OpenScript().</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PrevPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PrevPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NextPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NextPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingIndexFieldMappingsElement" xml:space="preserve">
+    <value>Missing indexFieldMappings element.</value>
+  </data>
+  <data name="RequiredSettingMissing" xml:space="preserve">
+    <value>Required setting "{0}" has no value.</value>
+  </data>
+  <data name="PathDoesNotExist" xml:space="preserve">
+    <value>{0} "{1}" does not exist.</value>
+  </data>
+  <data name="AvailableFieldTypesLabelText" xml:space="preserve">
+    <value>Available Field Types</value>
+  </data>
+  <data name="FieldTypeColumnHeaderText" xml:space="preserve">
+    <value>Field Type</value>
+  </data>
+  <data name="FieldNameColumnHeaderText" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
+  <data name="RemoveButtonText" xml:space="preserve">
+    <value>&lt; &amp;Remove</value>
+  </data>
+  <data name="IndexFileContentsLabelText" xml:space="preserve">
+    <value>Index File Contents</value>
+  </data>
+  <data name="ValueTypeColumnHeaderText" xml:space="preserve">
+    <value>Field Type</value>
+  </data>
+  <data name="ValueNameColumnHeaderText" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
+  <data name="OutputDirectoryLabelText" xml:space="preserve">
+    <value>Output Directory:</value>
+  </data>
+  <data name="BrowseButtonText" xml:space="preserve">
+    <value>&amp;Browse</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Avatar Ops Admin A6 Export</value>
+  </data>
+  <data name="BatchClassLabelText" xml:space="preserve">
+    <value>Batch Class:</value>
+  </data>
+  <data name="DocClassLabelText" xml:space="preserve">
+    <value>Document Class:</value>
+  </data>
+  <data name="NameLabelText" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="OkButtonText" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>&amp;Apply</value>
+  </data>
+  <data name="OutputDirectoryFolderBrowserDialogDescription" xml:space="preserve">
+    <value>Please select the output directory.</value>
+  </data>
+  <data name="InvalidSettings" xml:space="preserve">
+    <value>Current settings are invalid: 
+
+{0}</value>
+  </data>
+  <data name="SettingsChangedSave" xml:space="preserve">
+    <value>Do you wish to save the current settings?</value>
+  </data>
+  <data name="OutputDirectoryText" xml:space="preserve">
+    <value>Output Directory</value>
+  </data>
+  <data name="PdfText" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="CannotCreateDirectory" xml:space="preserve">
+    <value>Cannot create directory at: "{0}".</value>
+  </data>
+  <data name="CannotWriteXml" xml:space="preserve">
+    <value>Cannot write XML. {0}</value>
+  </data>
+  <data name="DirectoryCreationMaxFailure" xml:space="preserve">
+    <value>Unable to create directory "{0}" after {1} retries.</value>
+  </data>
+  <data name="ErrorWritingXml" xml:space="preserve">
+    <value>Error XML to final destination.  Attempt: {0}. {1}</value>
+  </data>
+  <data name="WritingXml" xml:space="preserve">
+    <value>Writing XML to "{0}"...</value>
+  </data>
+  <data name="IxattrLineTemplate" xml:space="preserve">
+    <value>ATTRIBUTES	DMS_DOCTYPE|tnt:{0}|{1}|{2}|</value>
+  </data>
+  <data name="CommandsFileTemplate" xml:space="preserve">
+    <value>IXATTR_ENCODING 	ISO8859_1
+DOCTYPE 		PDF
+COMP 			1.pdf 	application/pdf     {0}
+DMS_DOCTYPE		tnt.ican:consignment</value>
+  </data>
+  <data name="CouldNotDetermineDirectoryPathOfAssembly" xml:space="preserve">
+    <value>Could not determine directory path of Assembly.</value>
+  </data>
+  <data name="ErrorMovingDoc" xml:space="preserve">
+    <value>Error moving document to final destination.  Attempt: {0}. {1}</value>
+  </data>
+  <data name="OutputDirectoryCannotBeBlank" xml:space="preserve">
+    <value>Output directory cannot be blank.</value>
+  </data>
+  <data name="NoConNumberFieldsExist" xml:space="preserve">
+    <value>No ConNumber index fields with values were found.</value>
+  </data>
+  <data name="UnknownAssemblyValue" xml:space="preserve">
+    <value>&lt;Unknown Assembly Value&gt;</value>
+  </data>
+  <data name="VersionLabelText" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+</root>
