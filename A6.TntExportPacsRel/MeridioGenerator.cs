@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//#define SupportAllFields
+
+using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
 using System.Xml.Linq;
 using Kofax.ReleaseLib;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+
+#if SupportAllFields
+using System.Collections.Generic;
+using System.Linq;
+#endif
 
 namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 {
@@ -35,16 +35,19 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                     new XElement("scanrelease",
                         new XElement("batch",
                             new XAttribute("id", settings.BatchName),
-                            GetProperty("DOCUMENT TYPE", BatchVar, "100", settings),
-                            GetProperty("SCAN DEPOT", BatchVar, "101", settings),
-                            GetProperty("BATCH SCAN DATE / TIME", BatchVar, "102", settings),
-                            GetProperty("RESCAN FLAG", BatchVar, "104", settings),
-                            GetProperty("WORKSTATION NAME", BatchVar, "106", settings),
-                            GetProperty("BLANK SHEETS SCANNED", BatchVar, "107", settings),
+                            GetProperty("B_DocumentType", BatchVar, "100", settings),
+                            GetProperty("B_ScanDepot", BatchVar, "101", settings),
+                            GetProperty("B_ScanDateTime", BatchVar, "102", settings),
+                            GetProperty("B_ReScanFlag", BatchVar, "104", settings),
+                            GetProperty("B_WorkstationName", BatchVar, "106", settings),
+                            GetProperty("B_BlankSheetsScanned", BatchVar, "107", settings),
+                            GetProperty("B_StoreinDMS", BatchVar, "109", settings)
+#if SupportAllFields
+                            ,
                             GetProperty("SEND TO 3RD PARTY", BatchVar, "108", settings),
-                            GetProperty("STORE IN DMS", BatchVar, "109", settings),
                             GetProperty("ACTION", BatchVar, "501", settings),
                             GetProperty("BATCH TYPE", BatchVar, "502", settings)
+#endif
                             ))));
         }
 
@@ -63,10 +66,12 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             batchElement.Add(
                 new XElement("document",
                     GetProperty("203", Path.GetFileName(imageFilePath)),
-                    GetProperty("CONSIGNMENT NUMBER", IndexVar, "200", settings),
+                    GetProperty("ConNumber", IndexVar, "200", settings),
+                    GetProperty("TotalNumberofPages", IndexVar, "201", settings),
+                    GetProperty("AutoIndexedFlag", IndexVar, "202", settings)
+#if SupportAllFields
+                    ,
                     GetConsignmentNumbers(settings),
-                    GetProperty("201", "1"),
-                    GetProperty("AUTO INDEXED FLAG", IndexVar, "202", settings),
                     GetProperty("MAWB/CBV NUMBER", IndexVar, "204", settings),
                     GetMawbSectorRefs(settings),
                     GetProperty("FLIGHT DEPARTURE DATE", IndexVar, "206", settings),
@@ -78,9 +83,12 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                     GetProperty("RUNSHEET DATE", IndexVar, "225", settings),
                     GetProperty("PAGE NUMBER", IndexVar, "226", settings),
                     GetProperty("NUMBER OF CONSIGNMENTS ON PAGE", IndexVar, "227", settings),
-                    GetPodConsignmentNumbers(settings)));
+                    GetPodConsignmentNumbers(settings)
+#endif
+                    ));
         }
 
+#if SupportAllFields
         /// <summary>
         /// Gets the Consignment Numbers (multiple field values) if any exist.
         /// </summary>
@@ -151,6 +159,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 
             return conNumbers;
         }
+#endif
 
         /// <summary>
         /// Get the batch element from the XML.

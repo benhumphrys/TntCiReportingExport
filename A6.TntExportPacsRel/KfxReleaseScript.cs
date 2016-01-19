@@ -297,8 +297,8 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         {
             var standardAuditData = new StandardAuditData
             {
-                DomainAndUserName = _settings.GetFieldValue("DOMAIN AND USERNAME", BatchVar),
-                MachineName = _settings.GetFieldValue("WORKSTATION NAME", BatchVar),
+                DomainAndUserName = _settings.GetFieldValue("B_DomainAndUserName", BatchVar),
+                MachineName = _settings.GetFieldValue("B_WorkstationName", BatchVar),
                 Date = $"{_batchName.Substring(1, 2)}/{_batchName.Substring(3, 2)}/{_batchName.Substring(5, 4)}",
                 Time = $"{_batchName.Substring(9, 2)}:{_batchName.Substring(11, 2)}:{_batchName.Substring(13, 2)}"
             };
@@ -383,10 +383,10 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             var auditDetails = new MisAuditData()
             {
                 AuditFilePath = Path.Combine(auditDirectoryPath, auditFileName),
-                ScanDepot = _settings.GetFieldValue("Scan Depot", BatchVar, true),
-                ScanDate = _settings.GetFieldValue<DateTime>("Batch Scan Date / Time", BatchVar, true).ToString("yyyy-MM-dd HH:mm:ss"),
-                BatchType = _settings.GetFieldValue("Document Type", BatchVar, true),
-                RoundId = _settings.GetFieldValue("Round ID", BatchVar, true),
+                ScanDepot = _settings.GetFieldValue("B_ScanDepot", BatchVar, true),
+                ScanDate = _settings.GetFieldValue<DateTime>("B_ScanDateTime", BatchVar, true).ToString("yyyy-MM-dd HH:mm:ss"),
+                BatchType = _settings.GetFieldValue("B_DocumentType", BatchVar, true),
+                RoundId = _settings.GetFieldValue("B_RoundID", BatchVar, true),
             };
             return auditDetails;
         }

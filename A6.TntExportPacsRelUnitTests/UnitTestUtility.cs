@@ -44,22 +44,22 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
             var mockValues = new List<MockValue>
             {
                 new MockValue {SourceName = "B_MISA6AuditPath", SourceType = BatchVar, Value = "AuditA6"},
-                new MockValue {SourceName = "Document Type", SourceType = BatchVar, Value = documentType},
-                new MockValue {SourceName = "Scan Depot", SourceType = BatchVar, Value = scanDepot},
-                new MockValue {SourceName = "Batch Scan Date / Time", SourceType = BatchVar, Value = scanDateTime},
-                new MockValue {SourceName = "Rescan Flag", SourceType = BatchVar, Value = "0"},
-                new MockValue {SourceName = "Workstation Name", SourceType = BatchVar, Value = "VMXPBHTNT"},
-                new MockValue {SourceName = "Blank Sheets Scanned", SourceType = BatchVar, Value = "0"},
+                new MockValue {SourceName = "B_DocumentType", SourceType = BatchVar, Value = documentType},
+                new MockValue {SourceName = "B_ScanDepot", SourceType = BatchVar, Value = scanDepot},
+                new MockValue {SourceName = "B_ScanDateTime", SourceType = BatchVar, Value = scanDateTime},
+                new MockValue {SourceName = "B_ReScanFlag", SourceType = BatchVar, Value = "0"},
+                new MockValue {SourceName = "B_WorkstationName", SourceType = BatchVar, Value = "VMXPBHTNT"},
+                new MockValue {SourceName = "B_BlankSheetsScanned", SourceType = BatchVar, Value = "0"},
                 new MockValue {SourceName = "Send to 3rd Party", SourceType = BatchVar, Value = ""},
-                new MockValue {SourceName = "Store in DMS", SourceType = BatchVar, Value = "1"},
+                new MockValue {SourceName = "B_StoreinDMS", SourceType = BatchVar, Value = "1"},
                 new MockValue {SourceName = "Action", SourceType = BatchVar, Value = ""},
                 new MockValue {SourceName = "Batch Type", SourceType = BatchVar, Value = ""},
-                new MockValue {SourceName = "Domain and UserName", SourceType = BatchVar, Value = "VMXPBHTNT\\Administrator"},
-                new MockValue {SourceName = "Round ID", SourceType = BatchVar, Value = "123"},
+                new MockValue {SourceName = "B_DomainAndUserName", SourceType = BatchVar, Value = "VMXPBHTNT\\Administrator"},
+                new MockValue {SourceName = "B_RoundID", SourceType = BatchVar, Value = "123"},
                 new MockValue {SourceName = "DocStatus", SourceType = IndexVar, Value = docStatus},
-                new MockValue {SourceName = "Consignment Number", SourceType = IndexVar, Value = conNumber},
-                new MockValue {SourceName = "Total Number of Pages", SourceType = IndexVar, Value = pageCount},
-                new MockValue {SourceName = "Auto Indexed Flag", SourceType = IndexVar, Value = "1"},
+                new MockValue {SourceName = "ConNumber", SourceType = IndexVar, Value = conNumber},
+                new MockValue {SourceName = "TotalNumberOfPages", SourceType = IndexVar, Value = pageCount},
+                new MockValue {SourceName = "AutoIndexedFlag", SourceType = IndexVar, Value = "1"},
                 new MockValue {SourceName = "Batch Class Name", SourceType = KofaxVar, Value = batchClassName},
                 new MockValue {SourceName = "Batch Creation Date", SourceType = KofaxVar, Value = "02/05/2014"},
                 new MockValue {SourceName = "Document Class Name", SourceType = KofaxVar, Value = docClassName},
@@ -156,7 +156,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
 
         public static ReleaseSetupData GetDefaultSetupData()
         {
-            var setupData = GetBasicReleaseSetupData();
+            var setupData = GetBasicReleaseSetupData(true);
 
             ApplyNewFlagToSetupData(setupData);
             ApplyValidIndexFieldsToSetupData(setupData);
@@ -169,7 +169,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
 
         public static ReleaseSetupData GetDefaultSetupDataMissingFields()
         {
-            var setupData = GetBasicReleaseSetupData();
+            var setupData = GetBasicReleaseSetupData(true);
 
             ApplyNewFlagToSetupData(setupData);
             A.CallTo(()=> setupData.BatchVariableNames ).Returns(new List<object>());
@@ -247,7 +247,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
             A.CallTo(() => setupData.New).Returns(1);
         }
 
-        private static ReleaseSetupData GetBasicReleaseSetupData()
+        private static ReleaseSetupData GetBasicReleaseSetupData(bool defaultSetup = false)
         {
             Links links = new MockLinks();
             var setupData = A.Fake<ReleaseSetupData>();
@@ -283,8 +283,18 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
 
             A.CallTo(() => setupData.KofaxPDFDocClassEnabled).Returns(1);
             A.CallTo(() => setupData.KofaxPDFReleaseScriptEnabled).Returns(true);
-            A.CallTo(() => setupData.KofaxPDFPath).Returns("A6Output");
-            A.CallTo(() => setupData.ImageFilePath).Returns("A6Output");
+
+            if (defaultSetup)
+            {
+                A.CallTo(() => setupData.KofaxPDFPath).Returns("");
+                A.CallTo(() => setupData.ImageFilePath).Returns("");
+            }
+            else
+            {
+                A.CallTo(() => setupData.KofaxPDFPath).Returns("A6Output");
+                A.CallTo(() => setupData.ImageFilePath).Returns("A6Output");
+            }
+
             A.CallTo(() => setupData.Apply()).DoesNothing();
 
             return setupData;
