@@ -31,6 +31,11 @@
         public string RoundId { get; set; }
 
         /// <summary>
+        /// Gets or sets the TotalDocumentCount  property.
+        /// </summary>
+        public int TotalDocumentCount { get; set; }
+
+        /// <summary>
         /// Gets or sets the TotalImageCount property.
         /// </summary>
         public int TotalImageCount { get; set; }

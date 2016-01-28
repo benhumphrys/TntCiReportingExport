@@ -146,14 +146,23 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 
             try
             {
+                var outputStandardAuditXml = false;
+
                 // Save the standard audit file.
-                OutputStandardAuditXml();
+                if (_misAuditData != null && _misAuditData.TotalDocumentCount > 0)
+                {
+                    OutputStandardAuditXml();
+                    outputStandardAuditXml = true;
+                }
 
                 // Save the batch MKR files (only if no batch error).
                 if (!_batchError)
                 {
-                    var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
-                    WriteTextToDisk(auditMkrFilePath, string.Empty);
+                    if (outputStandardAuditXml)
+                    {
+                        var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
+                        WriteTextToDisk(auditMkrFilePath, string.Empty);
+                    }
 
                     var meridioMkrFilePath = GetMeridioFilePath("BatchMarker", "mkr");
                     WriteTextToDisk(meridioMkrFilePath, string.Empty);
@@ -264,6 +273,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             if (skipOutput) return;
 
             // Record the document's number of images.
+            _misAuditData.TotalDocumentCount++;
             _misAuditData.TotalImageCount += DocumentData.ImageFiles.Count;
 
             // Copy the image to the output directory.
@@ -295,12 +305,14 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// <returns>Standard audit data.</returns>
         private StandardAuditData GetStandardAuditData()
         {
+            var batchDateTime = _settings.GetFieldValue<DateTime>("B_ScanDateTime", BatchVar, true);
+
             var standardAuditData = new StandardAuditData
             {
                 DomainAndUserName = _settings.GetFieldValue("B_DomainAndUserName", BatchVar),
                 MachineName = _settings.GetFieldValue("B_WorkstationName", BatchVar),
-                Date = $"{_batchName.Substring(1, 2)}/{_batchName.Substring(3, 2)}/{_batchName.Substring(5, 4)}",
-                Time = $"{_batchName.Substring(9, 2)}:{_batchName.Substring(11, 2)}:{_batchName.Substring(13, 2)}"
+                Date = batchDateTime.ToString("dd/MM/yyyy"),
+                Time = batchDateTime.ToString("HH:mm:ss")
             };
             return standardAuditData;
         }
@@ -313,8 +325,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         {
             if (auditData == null) throw new ArgumentNullException(nameof(auditData));
 
-            var misGenerator = new MisAuditGenerator(_batchName, auditData, (s, v) => LogMessage(s, v), _startTime,
-                _documentCount);
+            var misGenerator = new MisAuditGenerator(_batchName, auditData, (s, v) => LogMessage(s, v), _startTime);
             misGenerator.Save(auditData.AuditFilePath);
         }
 

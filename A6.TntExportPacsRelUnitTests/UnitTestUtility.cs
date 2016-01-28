@@ -24,7 +24,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
                                                       string batchClassName = "A7 Test Batch Class",
                                                       string docClassName = "A7 Test Document Class",
                                                       string scanDepot = "BUD",
-                                                      string scanDateTime = "15/01/2016 10:14:48",
+                                                      string scanDateTime = "15/01/2016 10:14:44",
                                                       string docStatus = "SUCCESS",
                                                       string conNumber = "966210891",
                                                       string documentType = "1",

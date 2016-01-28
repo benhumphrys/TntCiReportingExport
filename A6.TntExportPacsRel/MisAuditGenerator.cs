@@ -16,14 +16,12 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// <param name="auditData">Audit data to output/</param>
         /// <param name="logMessage">Delegate to allow logging.</param>
         /// <param name="startTime">Start time of batch processing.</param>
-        /// <param name="documentCount">Number of documents in the batch.</param>
         public MisAuditGenerator(string batchName, MisAuditData auditData, 
-            Action<string, KfxInfoReturnValue> logMessage, string startTime, int documentCount) : base(logMessage)
+            Action<string, KfxInfoReturnValue> logMessage, string startTime) : base(logMessage)
         {
             if (batchName == null) throw new ArgumentNullException(nameof(batchName));
             if (auditData == null) throw new ArgumentNullException(nameof(auditData));
             if (startTime == null) throw new ArgumentNullException(nameof(startTime));
-            if (documentCount <= 0) throw new ArgumentOutOfRangeException(nameof(documentCount));
 
             var declaration = new XDeclaration("1.0", "utf-8", null);
             XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
@@ -47,7 +45,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                     GetFieldElement("BatchType", "string", auditData.BatchType),
                     GetFieldElement("RoundID", "string", auditData.RoundId),
                     GetFieldElement("ImageCount", "integer", auditData.TotalImageCount.ToString()),
-                    GetFieldElement("DocumentCount", "integer", documentCount.ToString()),
+                    GetFieldElement("DocumentCount", "integer", auditData.TotalDocumentCount.ToString()),
                     GetFieldElement("Status", "string", "Complete")));
 
             Xml = new XDocument(declaration, batchInfosElement);
