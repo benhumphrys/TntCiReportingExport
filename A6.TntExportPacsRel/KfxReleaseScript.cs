@@ -146,23 +146,17 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 
             try
             {
-                var outputStandardAuditXml = false;
-
                 // Save the standard audit file.
                 if (_misAuditData != null && _misAuditData.TotalDocumentCount > 0)
                 {
                     OutputStandardAuditXml();
-                    outputStandardAuditXml = true;
                 }
 
                 // Save the batch MKR files (only if no batch error).
                 if (!_batchError)
                 {
-                    if (outputStandardAuditXml)
-                    {
-                        var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
-                        WriteTextToDisk(auditMkrFilePath, string.Empty);
-                    }
+                    var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
+                    WriteTextToDisk(auditMkrFilePath, string.Empty);
 
                     var meridioMkrFilePath = GetMeridioFilePath("BatchMarker", "mkr");
                     WriteTextToDisk(meridioMkrFilePath, string.Empty);
