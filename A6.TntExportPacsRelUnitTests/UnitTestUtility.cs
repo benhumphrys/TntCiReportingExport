@@ -60,6 +60,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
                 new MockValue {SourceName = "ConNumber", SourceType = IndexVar, Value = conNumber},
                 new MockValue {SourceName = "TotalNumberOfPages", SourceType = IndexVar, Value = pageCount},
                 new MockValue {SourceName = "AutoIndexedFlag", SourceType = IndexVar, Value = "1"},
+                new MockValue {SourceName = "ExternalBatchName", SourceType = IndexVar, Value = batchName},
                 new MockValue {SourceName = "Batch Class Name", SourceType = KofaxVar, Value = batchClassName},
                 new MockValue {SourceName = "Batch Creation Date", SourceType = KofaxVar, Value = "02/05/2014"},
                 new MockValue {SourceName = "Document Class Name", SourceType = KofaxVar, Value = docClassName},

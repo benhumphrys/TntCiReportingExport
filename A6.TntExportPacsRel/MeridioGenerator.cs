@@ -34,7 +34,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                 new XDocument(new XElement("CDSRP",
                     new XElement("scanrelease",
                         new XElement("batch",
-                            new XAttribute("id", settings.BatchName),
+                            new XAttribute("id", settings.GetFieldValue("ExternalBatchName", IndexVar, true)),
                             GetProperty("B_DocumentType", BatchVar, "100", settings),
                             GetProperty("B_ScanDepot", BatchVar, "101", settings),
                             GetProperty("B_ScanDateTime", BatchVar, "102", settings),

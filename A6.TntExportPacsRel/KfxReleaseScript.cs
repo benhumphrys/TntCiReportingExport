@@ -274,7 +274,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             _misAuditData.TotalImageCount += DocumentData.ImageFiles.Count;
 
             // Copy the image to the output directory.
-            var batchName = _settings.BatchName.CleanInvalidFileNameChars();
+            var batchName = _settings.GetFieldValue("ExternalBatchName", IndexVar, true).CleanInvalidFileNameChars();
             var tiffFileName = $"BatchImage_{batchName}_{_documentCount.ToString().PadLeft(3, '0')}.tif";
             var tiffFilePath = Path.Combine(_settings.OutputDirectoryPath, tiffFileName);
             CopyDocumentToOutputDirectory(_settings.OutputDirectoryPath, tiffFilePath);
@@ -638,7 +638,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         {
             LogMessage(Resources.GettingSettings, DocMessage);
             _settings = new MainSettings(DocumentData);
-            _batchName = _settings.BatchName;
+            _batchName = _settings.GetFieldValue("ExternalBatchName", IndexVar, true);
         }
         
         /// <summary>
