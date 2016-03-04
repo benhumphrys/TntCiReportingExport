@@ -153,7 +153,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         {
             var filePath = GetAssociatedFilePath("A6.TntExportPacsRel.inf");
             var settingsValue = new StringBuilder(10);
-            var result = NativeMethods.GetPrivateProfileString("A5a6.TntExport", "OpenCloseLoggingEnabled",
+            var result = NativeMethods.GetPrivateProfileString("A6.TntExportPacsRel", "OpenCloseLoggingEnabled",
                 bool.FalseString, settingsValue, (uint) settingsValue.Capacity, filePath);
 
             if (result > 0 &&
