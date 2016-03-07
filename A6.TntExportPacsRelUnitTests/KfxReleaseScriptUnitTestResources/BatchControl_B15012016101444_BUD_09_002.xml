@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CDSRP>
+  <scanrelease>
+    <batch id="B15012016101444_BUD_09">
+      <property>
+        <id>100</id>
+        <value><![CDATA[1]]></value>
+      </property>
+      <property>
+        <id>101</id>
+        <value><![CDATA[BUD]]></value>
+      </property>
+      <property>
+        <id>102</id>
+        <value><![CDATA[15/01/2016 10:14:44]]></value>
+      </property>
+      <property>
+        <id>104</id>
+        <value><![CDATA[0]]></value>
+      </property>
+      <property>
+        <id>106</id>
+        <value><![CDATA[VMXPBHTNT]]></value>
+      </property>
+      <property>
+        <id>107</id>
+        <value><![CDATA[0]]></value>
+      </property>
+      <property>
+        <id>109</id>
+        <value><![CDATA[1]]></value>
+      </property>
+      <document>
+        <property>
+          <id>203</id>
+          <value><![CDATA[BatchImage_B15012016101444_BUD_09_002.tif]]></value>
+        </property>
+        <property>
+          <id>200</id>
+          <value><![CDATA[966210891]]></value>
+        </property>
+        <property>
+          <id>201</id>
+          <value><![CDATA[1]]></value>
+        </property>
+        <property>
+          <id>202</id>
+          <value><![CDATA[1]]></value>
+        </property>
+      </document>
+    </batch>
+  </scanrelease>
+</CDSRP>

@@ -20,15 +20,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
 
         public static TestContext TestContext { get; set; }
 
-        public static ReleaseData GetValidReleaseData(int docId = 1,
-                                                      string batchClassName = "A7 Test Batch Class",
-                                                      string docClassName = "A7 Test Document Class",
-                                                      string scanDepot = "BUD",
-                                                      string scanDateTime = "15/01/2016 10:14:44",
-                                                      string docStatus = "SUCCESS",
-                                                      string conNumber = "966210891",
-                                                      string documentType = "1",
-                                                      string pageCount = "1")
+        public static ReleaseData GetValidReleaseData(int docId = 1, string batchClassName = "A7 Test Batch Class", string docClassName = "A7 Test Document Class", string scanDepot = "BUD", string scanDateTime = "15/01/2016 10:14:44", string docStatus = "SUCCESS", string conNumber = "966210891", string documentType = "1", string pageCount = "1", string reject = "NO", string pacsDocumentId = "1")
         {
             var batchName = "B15012016101444_BUD_09"; 
             var releaseData = A.Fake<ReleaseData>();
@@ -57,6 +49,8 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
                 new MockValue {SourceName = "B_DomainAndUserName", SourceType = BatchVar, Value = "VMXPBHTNT\\Administrator"},
                 new MockValue {SourceName = "B_RoundID", SourceType = BatchVar, Value = "123"},
                 new MockValue {SourceName = "DocStatus", SourceType = IndexVar, Value = docStatus},
+                new MockValue {SourceName = "Reject", SourceType = IndexVar, Value = reject},
+                new MockValue {SourceName = "PACSDocumentID", SourceType = IndexVar, Value = pacsDocumentId},
                 new MockValue {SourceName = "ConNumber", SourceType = IndexVar, Value = conNumber},
                 new MockValue {SourceName = "TotalNumberOfPages", SourceType = IndexVar, Value = pageCount},
                 new MockValue {SourceName = "AutoIndexedFlag", SourceType = IndexVar, Value = "1"},

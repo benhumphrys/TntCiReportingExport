@@ -38,8 +38,6 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         private string _startTime;
         private string _batchName;
         private readonly List<string> _outputFilePaths = new List<string>();
-        private bool _batchError;
-        private MeridioGenerator _meridioGenerator;
         private StandardAuditData _standardAuditData;
 
         /// <summary>
@@ -51,6 +49,11 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// Gets or sets whether to skip outputting to the custom log file.
         /// </summary>
         public bool SkipCustomLog { get; set; }
+
+        /// <summary>
+        /// Gets or sets the PaddedDocumentCount property.
+        /// </summary>
+        private string PaddedDocumentCount => _documentCount.ToStringInv().PadLeft(3, '0');
 
         /// <summary>
         /// Script initialization point.  Perform any necessary initialization such as
@@ -76,9 +79,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             _documentCount = 0;
             _outputFilePaths.Clear();
             _open = true;
-            _batchError = false;
             _standardAuditData = new StandardAuditData();
-            _meridioGenerator = null;
 
             return KfxReturnValue.KFX_REL_SUCCESS;
         }
@@ -115,7 +116,6 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
                 LogMessage(message, ErrorMessage);
 
                 DeleteOutputFilePaths();
-                _batchError = true;
                 return KfxReturnValue.KFX_REL_ERROR;
             }
             finally
@@ -153,16 +153,6 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 
                     var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
                     WriteTextToDisk(auditMkrFilePath, string.Empty);
-                }
-
-                // Save the batch MKR files (only if no batch error).
-                if (!_batchError)
-                {
-                    if (_misAuditData != null && _misAuditData.TotalDocumentCount > 0)
-                    {
-                        var meridioMkrFilePath = GetMeridioFilePath("BatchMarker", "mkr");
-                        WriteTextToDisk(meridioMkrFilePath, string.Empty);
-                    }
                 }
                 
                 // Output the MIS audit XML if required.
@@ -255,35 +245,35 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             // Get the settings and arrange the link values so that they are easy to retrieve.
             ReadSettings();
 
-            if (_meridioGenerator == null)
+            if (_misAuditData == null)
             {
                 // If this is the first document, create the batch-level data.
                 _misAuditData = GetMisAuditData("B_MISA6AuditPath", "A6.TntExportPacsRel");
                 _standardAuditData = GetStandardAuditData();
-                _meridioGenerator = new MeridioGenerator(_settings, (s, t) => LogMessage(s, t));
             }
 
             // Determine if we can run for this document, or whether to skip output.
-            var skipOutput = IsDocSkippedForOutput();
+            var docOkayToOutput = IsDocOkayForOutput();
+            LogMessage(string.Format(Resources.IsDocOkayForOutput, docOkayToOutput), DocMessage);
 
             // No more processing for this document if we are skipping it.
-            if (skipOutput) return;
+            if (!docOkayToOutput) return;
 
             // Record the document's number of images.
             _misAuditData.TotalDocumentCount++;
             _misAuditData.TotalImageCount += DocumentData.ImageFiles.Count;
 
             // Copy the image to the output directory.
-            var batchName = _settings.GetFieldValue("ExternalBatchName", IndexVar, true).CleanInvalidFileNameChars();
-            var tiffFileName = $"BatchImage_{batchName}_{_documentCount.ToString().PadLeft(3, '0')}.tif";
-            var tiffFilePath = Path.Combine(_settings.OutputDirectoryPath, tiffFileName);
+            var paddedDocCount = PaddedDocumentCount;
+            var tiffFilePath = GetMeridioFilePath("BatchImage", "tif", paddedDocCount);
             CopyDocumentToOutputDirectory(_settings.OutputDirectoryPath, tiffFilePath);
 
-            // Add the document-level Meridio data.
-            _meridioGenerator.AddDocumentLevelData(_settings, tiffFilePath);
+            // Save the XML document (i.e. one XML document for each TIFF).
+            SaveMeridioFile(tiffFilePath);
 
-            // Save the XML document in its current state (i.e. once for each document release).
-            SaveMeridioFile();
+            // write the Meridio MKR file.
+            var meridioMkrFilePath = GetMeridioFilePath("BatchMarker", "mkr", paddedDocCount);
+            WriteTextToDisk(meridioMkrFilePath, string.Empty);
         }
 
         /// <summary>
@@ -329,10 +319,18 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// <summary>
         /// Save the Meridio XML file.
         /// </summary>
-        private void SaveMeridioFile()
+        /// <param name="tiffFilePath">File path to the TIFF.</param>
+        private void SaveMeridioFile(string tiffFilePath)
         {
-            var meridioFilePath = GetMeridioFilePath("BatchControl", "xml");
-            _meridioGenerator.Save(meridioFilePath);
+            if (tiffFilePath == null) throw new ArgumentNullException(nameof(tiffFilePath));
+
+            // Generate the Meridio data.
+            var meridioGenerator = new MeridioGenerator(_settings, (s, t) => LogMessage(s, t));
+            meridioGenerator.AddDocumentLevelData(_settings, tiffFilePath);
+
+            // Get the output file path and write the XML there.
+            var meridioFilePath = GetMeridioFilePath("BatchControl", "xml", PaddedDocumentCount);
+            meridioGenerator.Save(meridioFilePath);
         }
 
         /// <summary>
@@ -340,8 +338,9 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// </summary>
         /// <param name="prefix">Prefix to assign.</param>
         /// <param name="fileExt">File extension.</param>
+        /// <param name="postFix">Post fix to add (if required)</param>
         /// <returns>Meridio file path.</returns>
-        private string GetMeridioFilePath(string prefix, string fileExt)
+        private string GetMeridioFilePath(string prefix, string fileExt, string postFix = null)
         {
             if (prefix == null) throw new ArgumentNullException(nameof(prefix));
             if (fileExt == null) throw new ArgumentNullException(nameof(fileExt));
@@ -352,21 +351,33 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             {
                 batchName[0] = 'A';
             }
-            
-            var meridioFileName = $"{prefix}_{batchName}.{fileExt}";
+
+            if (postFix != null)
+            {
+                postFix = "_" + postFix;
+            }
+
+            var meridioFileName = $"{prefix}_{batchName}{postFix}.{fileExt}";
             var meridioFilePath = Path.Combine(_settings.OutputDirectoryPath, meridioFileName);
             return meridioFilePath;
         }
 
         /// <summary>
-        /// Determine if we can run, or whether to skip output.
+        /// Determine if the document is okay to output.
         /// </summary>
-        /// <returns>True if the document should be skipped; false if not.</returns>
-        private bool IsDocSkippedForOutput()
+        /// <returns>True if the document should be output; false if not.</returns>
+        private bool IsDocOkayForOutput()
         {
             var docStatusValue = _settings.GetFieldValue("DocStatus", IndexVar);
+            var rejectValue = _settings.GetFieldValue("Reject", IndexVar);
+            var pacsDocumentIdRawValue = _settings.GetFieldValue("PACSDocumentID", IndexVar);
+            int pacsDocumentIdValue;
 
-            return !docStatusValue.Equals("SUCCESS", IgnoreCase);
+            return docStatusValue.Equals("SUCCESS", IgnoreCase) &&
+                   rejectValue.Equals("NO", IgnoreCase) &&
+                   pacsDocumentIdRawValue != null &&
+                   int.TryParse(pacsDocumentIdRawValue, out pacsDocumentIdValue) &&
+                   pacsDocumentIdValue > 0;
         }
 
         /// <summary>

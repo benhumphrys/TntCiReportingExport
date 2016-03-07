@@ -390,6 +390,15 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is document okay for output: {0}..
+        /// </summary>
+        internal static string IsDocOkayForOutput {
+            get {
+                return ResourceManager.GetString("IsDocOkayForOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ATTRIBUTES	DMS_DOCTYPE|tnt:{0}|{1}|{2}|.
         /// </summary>
         internal static string IxattrLineTemplate {

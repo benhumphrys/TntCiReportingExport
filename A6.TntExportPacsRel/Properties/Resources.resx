@@ -330,4 +330,7 @@ DMS_DOCTYPE		tnt.ican:consignment</value>
   <data name="VersionLabelText" xml:space="preserve">
     <value>Version {0}</value>
   </data>
+    <data name="IsDocOkayForOutput" xml:space="preserve">
+    <value>Is document okay for output: {0}.</value>
+  </data>
 </root>

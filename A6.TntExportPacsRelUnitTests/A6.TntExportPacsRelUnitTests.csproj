@@ -117,7 +117,10 @@
     <Content Include="KfxReleaseScriptUnitTestResources\AuditReport_A15012016101444_BUD_09.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="KfxReleaseScriptUnitTestResources\BatchControl_B15012016101444_BUD_09.xml">
+    <Content Include="KfxReleaseScriptUnitTestResources\BatchControl_B15012016101444_BUD_09_001.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KfxReleaseScriptUnitTestResources\BatchControl_B15012016101444_BUD_09_002.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
