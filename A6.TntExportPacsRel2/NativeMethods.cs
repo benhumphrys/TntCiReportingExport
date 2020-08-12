@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Defines Win32 API functions and data structures.

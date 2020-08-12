@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     public class MockImageTypesList : IEnumerable
     {

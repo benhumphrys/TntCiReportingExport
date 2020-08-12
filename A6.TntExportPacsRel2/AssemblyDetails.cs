@@ -1,4 +1,4 @@
-﻿namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+﻿namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Class that holds details of an Assembly.

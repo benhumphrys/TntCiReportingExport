@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Main Form for the setup UI.

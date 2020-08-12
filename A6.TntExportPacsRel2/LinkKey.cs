@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Holds data that can be used as a key for a link.
@@ -21,7 +21,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         public KfxLinkSourceType Type { get; }
 
         /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel.LinkKey class.
+        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel2.LinkKey class.
         /// </summary>
         /// <param name="name">Name of the LinkKey.</param>
         /// <param name="type">Type of the LinkKey.</param>

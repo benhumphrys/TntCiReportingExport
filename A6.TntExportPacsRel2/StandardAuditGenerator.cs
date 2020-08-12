@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Generates standard Audit XML.
@@ -13,7 +13,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
     internal sealed class StandardAuditGenerator : XmlGeneratorBase
     {
         /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel.XmlGeneratorBase class.
+        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel2.XmlGeneratorBase class.
         /// </summary>
         /// <param name="auditData">Audit data.</param>
         /// <param name="logMessage">Delegate to allow logging.</param>

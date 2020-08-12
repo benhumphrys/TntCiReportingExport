@@ -251,7 +251,7 @@
     <value>&amp;Browse</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Avatar Ops Admin A6 Export</value>
+    <value>Avatar Ops Admin A6 PACS 2 Export</value>
   </data>
   <data name="BatchClassLabelText" xml:space="preserve">
     <value>Batch Class:</value>
@@ -330,7 +330,7 @@ DMS_DOCTYPE		tnt.ican:consignment</value>
   <data name="VersionLabelText" xml:space="preserve">
     <value>Version {0}</value>
   </data>
-    <data name="IsDocOkayForOutput" xml:space="preserve">
+  <data name="IsDocOkayForOutput" xml:space="preserve">
     <value>Is document okay for output: {0}.</value>
   </data>
 </root>

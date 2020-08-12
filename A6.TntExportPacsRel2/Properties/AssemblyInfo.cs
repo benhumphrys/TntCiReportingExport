@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("A6.TntExportPacsRel")]
-[assembly: AssemblyDescription("A6 PACSExport Connector for Kofax Capture 10.1.")]
+[assembly: AssemblyTitle("A6.TntExportPacsRel2")]
+[assembly: AssemblyDescription("A6 PACS 2 Export Connector for Kofax Capture 10.1.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TNT Express ICS")]
-[assembly: AssemblyProduct("A6.TntExportPacsRel")]
+[assembly: AssemblyProduct("A6.TntExportPacsRel2")]
 [assembly: AssemblyCopyright("Copyright © TNT Express ICS 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("10.1.0.0")]
 [assembly: AssemblyFileVersion("10.1.0.0")]
 
-[assembly: InternalsVisibleTo("A6.TntExportPacsRelUnitTests, PublicKey=002400000480000094000000060200000024000052534131000400000100010071A30F5840C53FB175EFDE9498AC6266B73DE098A34DF2889DF92D4120C716C6B895CAFBEBCAC321C4C122050FE90A78846EE788B4377480BCAD1D6A5ACE3070654A6B16D6679741F741C55B7C700FEAEC46137C977824BE8F32710CC9F6FF21AE21D7294C979BCDEE5DD4BB9EA044CDF49078307847404A2B49C1C71E458EBA")]
+[assembly: InternalsVisibleTo("A6.TntExportPacsRel2UnitTests, PublicKey=002400000480000094000000060200000024000052534131000400000100010075B13D7FB9CE66C0AE5BC042BEDC23FF0AFA77BDFDFB040C83D9D3D1EEE4437C0C19D070EE27EDDAC0E2E653A7B302E7109F82ADA1257AADAA6A3B61EF1E3A376B74E1560FADFFDA71F33A61BC340A2AB4EDCE4293A1E69C6C3BAE782934C4D21319D88554055E6E337F662A7E363BFE675D22EEB712C1BFF4BEC52C5A306CCD")]

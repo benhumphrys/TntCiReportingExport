@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Export exception (type-agnostic).

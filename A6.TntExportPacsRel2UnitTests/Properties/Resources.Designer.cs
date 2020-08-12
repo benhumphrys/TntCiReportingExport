@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests.Properties {
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

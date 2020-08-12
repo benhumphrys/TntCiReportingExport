@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     internal sealed class MockLinks : Links
     {

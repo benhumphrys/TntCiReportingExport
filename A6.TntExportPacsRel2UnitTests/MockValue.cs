@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     /// <summary>
     /// Implementation of Kofax.ReleaseLib.Value.

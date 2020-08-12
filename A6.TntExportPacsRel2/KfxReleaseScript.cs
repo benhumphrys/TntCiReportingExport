@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using Kofax.ReleaseLib;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     [ClassInterface(ClassInterfaceType.None),
-    Guid("6883A852-56B9-42FD-8535-F249FA55FBB7"),
+    Guid("2EC97B9C-A76E-441A-8445-3467152A3AB3"),
     ProgId("A6.TntExportPcs2.kfxReleaseScript"),
     ComVisible(true)]
     public class KfxReleaseScript : IKfxReleaseScript, IDisposable
@@ -248,7 +248,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
             if (_misAuditData == null)
             {
                 // If this is the first document, create the batch-level data.
-                _misAuditData = GetMisAuditData("B_MISA6AuditPath", "A6.TntExportPacsRel");
+                _misAuditData = GetMisAuditData("B_MISA6AuditPath", "A6.TntExportPacsRel2");
                 _standardAuditData = GetStandardAuditData();
             }
 

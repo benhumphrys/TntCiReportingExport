@@ -1,16 +1,16 @@
 [Scripts]
-A6.TntExportPacsRel
+A6.TntExportPacsRel2
 
-[A6.TntExportPacsRel]
-SetupModule=A6.TntExportPacsRel.dll
+[A6.TntExportPacsRel2]
+SetupModule=A6.TntExportPacsRel2.dll
 SetupProgID=A6.TntExportPcs2.kfxreleasesetupscript
 SetupVersion=10.1
-ReleaseModule=A6.TntExportPacsRel.dll
+ReleaseModule=A6.TntExportPacsRel2.dll
 ReleaseProgID=A6.TntExportPcs2.kfxReleaseScript
 ReleaseVersion=10.1
 SupportsNonImageFiles=True
 SupportsKofaxPDF=True
 RemainLoaded=True
 SupportsOriginalFileName=True
-DisplayName=A6 PACS Export Connector for Kofax Capture 10.1.
+DisplayName=A6 PACS 2 Export Connector for Kofax Capture 10.1.
 ;OpenCloseLoggingEnabled=True

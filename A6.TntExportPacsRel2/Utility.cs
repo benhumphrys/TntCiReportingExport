@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Holds utility methods.
@@ -151,9 +151,9 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         /// <remarks>Returns null if the logging is not enabled in the INF file.</remarks>
         public static string GetLogFilePath()
         {
-            var filePath = GetAssociatedFilePath("A6.TntExportPacsRel.inf");
+            var filePath = GetAssociatedFilePath("A6.TntExportPacsRel2.inf");
             var settingsValue = new StringBuilder(10);
-            var result = NativeMethods.GetPrivateProfileString("A6.TntExportPacsRel", "OpenCloseLoggingEnabled",
+            var result = NativeMethods.GetPrivateProfileString("A6.TntExportPacsRel2", "OpenCloseLoggingEnabled",
                 bool.FalseString, settingsValue, (uint) settingsValue.Capacity, filePath);
 
             if (result > 0 &&

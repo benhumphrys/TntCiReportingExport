@@ -1,9 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
-    [Guid("D5885F50-34FC-43F5-B3D2-530DB9742A93"),
+    [Guid("D0221A2F-C75B-4BE4-A303-77E817747238"),
     InterfaceType(ComInterfaceType.InterfaceIsIDispatch),
     ComVisible(true)]
     public interface IKfxReleaseScript

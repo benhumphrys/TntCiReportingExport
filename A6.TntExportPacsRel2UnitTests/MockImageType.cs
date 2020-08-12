@@ -1,4 +1,4 @@
-﻿namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+﻿namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     public class MockImageType
     {

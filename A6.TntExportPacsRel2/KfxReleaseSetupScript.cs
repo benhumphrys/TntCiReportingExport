@@ -3,13 +3,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Kofax.ReleaseLib;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     [ComVisible(true),
     ClassInterface(ClassInterfaceType.None),
-    Guid("B3D9497C-3660-421E-BA11-BA7EE86BE82E"),
+    Guid("DAB6FB04-DE7B-4A3D-B875-3EA0CEF5AC9D"),
     ProgId("A6.TntExportPcs2.kfxreleasesetupscript")]
     public class KfxReleaseSetupScript : IKfxReleaseSetupScript, IDisposable
     {

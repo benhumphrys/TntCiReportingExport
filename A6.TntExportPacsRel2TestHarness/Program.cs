@@ -1,8 +1,8 @@
 ﻿using System;
-using Tnt.KofaxCapture.A6.TntExportPacsRel;
-using Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelTestHarness
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2TestHarness
 {
     class Program
     {

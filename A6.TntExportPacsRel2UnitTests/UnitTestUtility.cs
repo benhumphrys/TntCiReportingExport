@@ -8,7 +8,7 @@ using FakeItEasy;
 using Kofax.ReleaseLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     internal static class UnitTestUtility
     {

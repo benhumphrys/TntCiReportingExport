@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Kofax.ReleaseLib;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Holds the main settings for the Export Connector.

@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     /// <summary>
     /// Wrapper for Kofax.ReleaseLib.ImageFiles

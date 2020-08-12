@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 #endif
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Generates Merio XML.
@@ -22,7 +22,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         private const KfxLinkSourceType IndexVar = KfxLinkSourceType.KFX_REL_INDEXFIELD;
 
         /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel.MeridioGenerator class.
+        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel2.MeridioGenerator class.
         /// </summary>
         /// <param name="settings">Current settings.</param>
         /// <param name="logMessage">Delegate to allow logging.</param>

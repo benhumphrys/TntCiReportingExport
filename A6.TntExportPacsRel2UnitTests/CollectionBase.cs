@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     /// <summary>
     /// Collection class that is used to hold Kofax Capture wrapper objects.

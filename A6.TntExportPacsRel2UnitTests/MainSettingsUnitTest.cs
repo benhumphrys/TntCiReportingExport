@@ -3,9 +3,9 @@ using System.Linq;
 using FakeItEasy;
 using Kofax.ReleaseLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tnt.KofaxCapture.A6.TntExportPacsRel;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     [TestClass]
     public class MainSettingsUnitTest

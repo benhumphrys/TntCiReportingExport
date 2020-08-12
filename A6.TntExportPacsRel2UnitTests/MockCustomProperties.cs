@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRelUnitTests
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
 {
     /// <summary>
     /// Wrapper for Kofax.ReleaseLib.ICustomProperties2.

@@ -4,9 +4,9 @@ using System.IO;
 using System.Threading;
 using System.Xml.Linq;
 using Kofax.ReleaseLib;
-using Tnt.KofaxCapture.A6.TntExportPacsRel.Properties;
+using Tnt.KofaxCapture.A6.TntExportPacsRel2.Properties;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     internal abstract class XmlGeneratorBase
     {
@@ -26,7 +26,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
         protected XDocument Xml { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel.XmlGeneratorBase class.
+        /// Initializes a new instance of the Tnt.KofaxCapture.A6.TntExportPacsRel2.XmlGeneratorBase class.
         /// </summary>
         /// <param name="logMessage">Delegate to allow logging.</param>
         protected XmlGeneratorBase(Action<string, KfxInfoReturnValue> logMessage)

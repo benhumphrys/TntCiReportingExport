@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Kofax.ReleaseLib;
 
-namespace Tnt.KofaxCapture.A6.TntExportPacsRel
+namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
 {
     /// <summary>
     /// Holds details of fields for display and selection during setup.
