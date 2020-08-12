@@ -13,7 +13,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
 {
     [ClassInterface(ClassInterfaceType.None),
     Guid("6883A852-56B9-42FD-8535-F249FA55FBB7"),
-    ProgId("A6.TntExportPacs.kfxReleaseScript"),
+    ProgId("A6.TntExportPcs2.kfxReleaseScript"),
     ComVisible(true)]
     public class KfxReleaseScript : IKfxReleaseScript, IDisposable
     {

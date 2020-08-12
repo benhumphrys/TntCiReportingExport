@@ -7,8 +7,8 @@
     <ProjectGuid>{AD032A95-2D24-47C5-B636-C570BAA9E1E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tnt.KofaxCapture.A6.TntExportPacsRel</RootNamespace>
-    <AssemblyName>A6.TntExportPacsRel</AssemblyName>
+    <RootNamespace>Tnt.KofaxCapture.A6.TntExportPacsRel2</RootNamespace>
+    <AssemblyName>A6.TntExportPacsRel2</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,21 +33,19 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>A6.TntExportPacsRel.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>A6.TntExportPacsRel2.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kofax.CapLib4.Interop, Version=1.1.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Kofax.CapLib4.Interop, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.CapLib4.Interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>\\BENH\Source\Stable Shared\Kofax Capture\10.1.0.0\Kofax.CapLib4.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Kofax.ReleaseLib.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.ReleaseLib.Interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>\\BENH\Source\Stable Shared\Kofax Capture\10.1.0.0\Kofax.ReleaseLib.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="Kofax.VBA.Interop">
-      <HintPath>\\BENH\Source\Stable Shared\Kofax Capture\10.1.0.0\Kofax.VBA.Interop.dll</HintPath>
+    <Reference Include="Kofax.VBA.Interop, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.VBA.Interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
@@ -99,10 +97,8 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="A6.TntExportPacsRel.inf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="A6.TntExportPacsRel.snk" />
+    <None Include="A6.TntExportPacsRel2.snk" />
+    <None Include="packages.config" />
     <None Include="Resources\NextPage.png" />
     <None Include="Resources\PrevPage.png" />
   </ItemGroup>
@@ -111,6 +107,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="A6.TntExportPacsRel2.inf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

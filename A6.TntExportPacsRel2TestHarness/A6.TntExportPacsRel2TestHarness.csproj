@@ -7,8 +7,8 @@
     <ProjectGuid>{892CDBB1-5617-4075-BDEF-9883B1428104}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tnt.KofaxCapture.A6.TntExportPacsRelTestHarness</RootNamespace>
-    <AssemblyName>A6.TntExportPacsRelTestHarness</AssemblyName>
+    <RootNamespace>Tnt.KofaxCapture.A6.TntExportPacsRel2TestHarness</RootNamespace>
+    <AssemblyName>A6.TntExportPacsRel2TestHarness</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,17 +35,20 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>A6.TntExportPacsRelTestHarness.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>A6.TntExportPacsRel2TestHarness.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kofax.CapLib4.Interop">
-      <HintPath>\\BENH\Source\Stable Shared\Kofax Capture\10.1.0.0\Kofax.CapLib4.Interop.dll</HintPath>
+    <Reference Include="Kofax.CapLib4.Interop, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.CapLib4.Interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Kofax.ReleaseLib.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.ReleaseLib.Interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>\\BENH\Source\Stable Shared\Kofax Capture\10.1.0.0\Kofax.ReleaseLib.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Kofax.VBA.Interop, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2a06c44ecf114f0f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kofax.ReleaseLib.Interop.10.1.1043\lib\NET40\Kofax.VBA.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,17 +65,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\A6.TntExportPacsRelUnitTests\A6.TntExportPacsRelUnitTests.csproj">
-      <Project>{4e9b24db-ce5c-4173-967f-6c53ad753231}</Project>
+    <ProjectReference Include="..\A6.TntExportPacsRel2UnitTests\A6.TntExportPacsRel2UnitTests.csproj">
+      <Project>{cd68e22c-5a14-4c40-a726-b1a546843f9d}</Project>
       <Name>A7.TntExportPdmsUnitTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\A6.TntExportPacsRel\A6.TntExportPacsRel.csproj">
-      <Project>{ad032a95-2d24-47c5-b636-c570baa9e1e4}</Project>
+    <ProjectReference Include="..\A6.TntExportPacsRel2\A6.TntExportPacsRel2.csproj">
+      <Project>{ea499963-7be7-4a0d-889b-584463c50fd2}</Project>
       <Name>A7.TntExportPdms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="A6.TntExportPacsRelTestHarness.snk" />
+    <None Include="A6.TntExportPacsRel2TestHarness.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

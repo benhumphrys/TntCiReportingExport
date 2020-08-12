@@ -10,7 +10,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel
     [ComVisible(true),
     ClassInterface(ClassInterfaceType.None),
     Guid("B3D9497C-3660-421E-BA11-BA7EE86BE82E"),
-    ProgId("A6.TntExportPacs.kfxreleasesetupscript")]
+    ProgId("A6.TntExportPcs2.kfxreleasesetupscript")]
     public class KfxReleaseSetupScript : IKfxReleaseSetupScript, IDisposable
     {
         private bool _disposed;
