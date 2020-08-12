@@ -8,7 +8,7 @@ $binaryFileName = "A6.TntExportPacsRel2.dll"
 $binaryFilePath = Join-Path -path $binaryDirectoryPath -ChildPath $binaryFileName
 $releasePaths = $binaryDirectoryPath
 $mickeyParentDirectoryPath = "\\Mickey\External Data\stu\TNT - TNT\Commerical Invoice OCR Standard\Source\A6.TntExportPacsRel2"
-$mickeyParentDirectoryPath = "C:\Misc\A6.TntExportPacsRel2"
+#$mickeyParentDirectoryPath = "C:\Misc\A6.TntExportPacsRel2"
 
 Write-Host "Starting NuGet server..."
 docker start scansationnuget
