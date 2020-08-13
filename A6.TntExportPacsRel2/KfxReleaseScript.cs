@@ -39,6 +39,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
         private string _batchName;
         private readonly List<string> _outputFilePaths = new List<string>();
         private StandardAuditData _standardAuditData;
+        private string _parentBatchName;
 
         /// <summary>
         /// Gets or set the DocumentData.
@@ -312,7 +313,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
         {
             if (auditData == null) throw new ArgumentNullException(nameof(auditData));
 
-            var misGenerator = new MisAuditGenerator(_batchName, auditData, (s, v) => LogMessage(s, v), _startTime);
+            var misGenerator = new MisAuditGenerator(_parentBatchName, auditData, (s, v) => LogMessage(s, v), _startTime);
             misGenerator.Save(auditData.AuditFilePath);
         }
 
@@ -650,6 +651,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel2
             LogMessage(Resources.GettingSettings, DocMessage);
             _settings = new MainSettings(DocumentData);
             _batchName = _settings.GetFieldValue("ExternalBatchName", IndexVar, true);
+            _parentBatchName = _settings.GetFieldValue("B_ParentBatchName", BatchVar, true);
         }
         
         /// <summary>
