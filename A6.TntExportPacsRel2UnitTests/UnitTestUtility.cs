@@ -42,6 +42,7 @@ namespace Tnt.KofaxCapture.A6.TntExportPacsRel2UnitTests
                 new MockValue {SourceName = "B_ReScanFlag", SourceType = BatchVar, Value = "0"},
                 new MockValue {SourceName = "B_WorkstationName", SourceType = BatchVar, Value = "VMXPBHTNT"},
                 new MockValue {SourceName = "B_BlankSheetsScanned", SourceType = BatchVar, Value = "0"},
+                new MockValue {SourceName = "B_ParentBatchName", SourceType = BatchVar, Value = "PARENTBATCHNAMETESET"},
                 new MockValue {SourceName = "Send to 3rd Party", SourceType = BatchVar, Value = ""},
                 new MockValue {SourceName = "B_StoreinDMS", SourceType = BatchVar, Value = "1"},
                 new MockValue {SourceName = "Action", SourceType = BatchVar, Value = ""},
