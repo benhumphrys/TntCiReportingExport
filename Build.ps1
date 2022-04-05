@@ -1,5 +1,6 @@
 Clear
 
+$buildDirectoryName = "."
 $imageName = "A6.TntExportPacsRel2"
 $containerName = "A6.TntExportPacsRel2"
 $outputArchiveDirectoryPath = "C:\Release"
@@ -16,7 +17,7 @@ docker start scansationnuget
 msbuild .\A6.TntExportPacsRel2\A6.TntExportPacsRel2.csproj /p:Configuration=Release
 
 Write-Host "Opening VPN..."
-rasdial "ScansationVPN" "BenH" "*R6nuNuv"
+rasdial "ScansationVPN" "BenH" '0R2^l$OsqvjK'
 
 Write-Host "Removing non-required files from build..."
 $releasePaths | ForEach-Object {"$_\*"} | Get-ChildItem `
@@ -59,4 +60,4 @@ $sourceArchiveDirectoryPath = Join-Path -Path $sourceDirectoryPath -ChildPath $v
 Write-Host "Copying source to $sourceArchiveDirectoryPath..."
 mkdir $sourceArchiveDirectoryPath\.git\
 Copy-Item .git\*  $sourceArchiveDirectoryPath\.git\ -Recurse 
-Copy-Item $buildDirectoryName\* $sourceArchiveDirectoryPath 
+Copy-Item $buildDirectoryName\* $sourceArchiveDirectoryPath -Recurse 

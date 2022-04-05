@@ -1,0 +1,16 @@
+[Scripts]
+TntCiReportingExport
+
+[TntCiReportingExport]
+SetupModule=TntCiReportingExport.dll
+SetupProgID=TntCiReportingExport.kfxreleasesetup
+SetupVersion=10.1
+ReleaseModule=TntCiReportingExport.dll
+ReleaseProgID=TntCiReportingExport.kfxReleaseScript
+ReleaseVersion=10.1
+SupportsNonImageFiles=True
+SupportsKofaxPDF=True
+RemainLoaded=True
+SupportsOriginalFileName=True
+DisplayName=TNT CI Reporting Export Connector for Kofax Capture 10.1.
+;OpenCloseLoggingEnabled=True
