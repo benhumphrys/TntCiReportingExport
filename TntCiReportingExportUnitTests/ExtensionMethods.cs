@@ -19,7 +19,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         public static string Clean(this string input, char[] chars)
         {
             if (input == null) return null;
-            if (chars == null) throw new ArgumentNullException("chars");
+            if (chars == null) throw new ArgumentNullException(nameof(chars));
 
             var output = new StringBuilder();
 
@@ -51,7 +51,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         public static string ReplaceInsensitive(this string input, string oldValue, string newValue)
         {
             if (input == null) return null;
-            if (string.IsNullOrEmpty(oldValue)) throw new ArgumentNullException("oldValue");
+            if (string.IsNullOrEmpty(oldValue)) throw new ArgumentNullException(nameof(oldValue));
             if (newValue == null) newValue = string.Empty;
 
             var translated = input;

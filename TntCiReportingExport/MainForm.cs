@@ -24,7 +24,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// </summary>
         private bool Dirty
         {
-            get { return _dirty; }
+            get => _dirty;
             set
             {
                 _dirty = value;
@@ -33,23 +33,17 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         }
 
         /// <summary>
-        /// Indicates whether the settings are okay.
-        /// </summary>
-        public bool SettingsOk { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A5a6.TntExport.MainFormClass.
+        /// Initializes a new instance of the Tnt.KofaxCapture.TntCiReportingExport.MainFormClass.
         /// </summary>
         /// <param name="settings">Main settings.</param>
         public MainForm(MainSettings settings) : this()
         {
-            if (settings == null) throw new ArgumentNullException("settings");
-            _settings = settings;
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _assemblyDetails = Utility.GetAssemblyDetails(Assembly.GetExecutingAssembly());
         }
 
         /// <summary>
-        /// Initializes a new instance of the Tnt.KofaxCapture.A5a6.TntExport.MainFormClass.
+        /// Initializes a new instance of the Tnt.KofaxCapture.TntCiReportingExport.MainFormClass.
         /// </summary>
         private MainForm()
         {
@@ -70,7 +64,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         }
 
         /// <summary>
-        /// Localise the UI.
+        /// Localize the UI.
         /// </summary>
         private void LoadResourceStrings()
         {

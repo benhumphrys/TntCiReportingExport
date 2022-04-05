@@ -201,8 +201,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// <param name="settings">Current settings.</param>
         private void LogSetupErrors(MainSettings settings)
         {
-            if (settings == null) throw new ArgumentNullException("settings");
-            LastErrorText.AppendLine(Resources.IncompatibleDocClassDescription);
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
             LastErrorText.AppendLine();
 
             foreach (var error in settings.SetupDataErrors)

@@ -30,7 +30,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         public static string Clean(this string input, char[] chars)
         {
             if (input == null) return null;
-            if (chars == null) throw new ArgumentNullException("chars");
+            if (chars == null) throw new ArgumentNullException(nameof(chars));
 
             var output = new StringBuilder();
 
@@ -49,7 +49,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// <returns>Cleaned string.</returns>
         public static string CleanInvalidFileNameChars(this string input)
         {
-            return input == null ? null : input.Clean(Path.GetInvalidFileNameChars());
+            return input?.Clean(Path.GetInvalidFileNameChars());
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         public static string ReplaceInsensitive(this string input, string oldValue, string newValue)
         {
             if (input == null) return null;
-            if (string.IsNullOrEmpty(oldValue)) throw new ArgumentNullException("oldValue");
+            if (string.IsNullOrEmpty(oldValue)) throw new ArgumentNullException(nameof(oldValue));
             if (newValue == null) newValue = string.Empty;
 
             var translated = input;

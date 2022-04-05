@@ -28,7 +28,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         /// <summary>
         /// Gets the number of items in the collection.
         /// </summary>
-        public int Count { get { return _imageTypes.Count; } }
+        public int Count => _imageTypes.Count;
 
         /// <summary>
         /// Initialises a new instance of the Scansation.KofaxCapture.KcpExportWrapper.ImageTypesList class.

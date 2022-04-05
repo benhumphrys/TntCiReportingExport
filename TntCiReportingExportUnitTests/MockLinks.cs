@@ -72,10 +72,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
             throw new NotImplementedException();
         }
 
-        public int Count
-        {
-            get { return _links.Count; }
-        }
+        public int Count => _links.Count;
         public int ReadOnly { get; set; }
 
         IEnumerator ILinks.GetEnumerator()

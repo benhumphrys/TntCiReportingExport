@@ -201,37 +201,25 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
             // Get the settings and arrange the link values so that they are easy to retrieve.
             ReadSettings();
 
-            string GetReportXml()
-            {
-                try
-                {
-                    LogMessage(Resources.GettingXml, DocMessage);
-                    // ReSharper disable once UseIndexedProperty
-                    return DocumentData.get_DocumentCustomStorageString("TntKtmQaQcReport");
-                }
-                catch (COMException)
-                {
-                    // Report XMl does not exist.
-                    LogMessage(Resources.NoReportXml, DocMessage);
-                    return null;
-                }
-            }
-
             // Read the document-level CSS, if it exists, and output it to disk.  If it does not exist, do
             // nothing.
-            var reportXml = GetReportXml();
+            LogMessage(Resources.GettingXml, DocMessage);
+            var reportXml = _settings.GetReportXml(this);
 
-            if (!string.IsNullOrEmpty(reportXml))
+            if (string.IsNullOrEmpty(reportXml))
             {
-                var computerName = Environment.MachineName.CleanInvalidFileNameChars();
-                var batchName = DocumentData.BatchName.CleanInvalidFileNameChars();
-                var reportFileName = $"{computerName}_QAQC_{batchName}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
-                var reportFilePath = Path.Combine(_settings.OutputDirectoryPath, reportFileName);
-                LogMessage(string.Format(Resources.WritingXml, reportFilePath), DocMessage);
-                WriteTextToDisk(reportFilePath, reportXml);
+                LogMessage(Resources.NoReportXml, DocMessage);
+                return;
             }
+
+            var computerName = Environment.MachineName.CleanInvalidFileNameChars();
+            var batchName = _settings.BatchName.CleanInvalidFileNameChars();
+            var reportFileName = $"{computerName}_QAQC_{batchName}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+            var reportFilePath = Path.Combine(_settings.OutputDirectoryPath, reportFileName);
+            LogMessage(string.Format(Resources.WritingXml, reportFilePath), DocMessage);
+            WriteTextToDisk(reportFilePath, reportXml);
         }
-        
+
         /// <summary>
         /// Attempt to get the log file path for use during CloseScript() (as SendMessage() won't work there).
         /// </summary>

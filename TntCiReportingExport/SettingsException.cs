@@ -10,8 +10,8 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
     public class SettingsException : Exception
     {
         /// <summary>
-        /// Initialises a new instance of the 
-        /// Tnt.KofaxCapture.A5a6.TntExport.SettingsException class.
+        /// Initializes a new instance of the 
+        /// Tnt.KofaxCapture.TntCiReportingExport.SettingsException class.
         /// </summary>
         public SettingsException()
         {
@@ -19,7 +19,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
 
         /// <summary>
         /// Initializes a new instance of the 
-        /// Tnt.KofaxCapture.A5a6.TntExport.SettingsException class 
+        /// Tnt.KofaxCapture.TntCiReportingExport.SettingsException class 
         /// with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
@@ -30,7 +30,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
 
         /// <summary>
         /// Initializes a new instance of the 
-        /// Tnt.KofaxCapture.A5a6.TntExport.SettingsException class 
+        /// Tnt.KofaxCapture.TntCiReportingExport.SettingsException class 
         /// with serialized data.
         /// </summary>
         /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object 
@@ -47,7 +47,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
 
         /// <summary>
         /// Initializes a new instance of the 
-        /// Tnt.KofaxCapture.A5a6.TntExport.SettingsException class with a specified 
+        /// Tnt.KofaxCapture.TntCiReportingExport.SettingsException class with a specified 
         /// error message and a reference to the inner exception that is the cause of this exception.
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>

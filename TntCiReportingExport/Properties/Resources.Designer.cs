@@ -70,20 +70,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avatar Ops Admin A6 PACS 2 Export.
+        ///   Looks up a localized string similar to TNT CI Reporting Export.
         /// </summary>
         internal static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Available Field Types.
-        /// </summary>
-        internal static string AvailableFieldTypesLabelText {
-            get {
-                return ResourceManager.GetString("AvailableFieldTypesLabelText", resourceCulture);
             }
         }
         
@@ -142,38 +133,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot convert value &quot;{0}&quot; to type {1}..
-        /// </summary>
-        internal static string CannotConvertValue {
-            get {
-                return ResourceManager.GetString("CannotConvertValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot create directory at: &quot;{0}&quot;..
-        /// </summary>
-        internal static string CannotCreateDirectory {
-            get {
-                return ResourceManager.GetString("CannotCreateDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannot write text file. {0}.
         /// </summary>
         internal static string CannotWriteText {
             get {
                 return ResourceManager.GetString("CannotWriteText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot write XML. {0}.
-        /// </summary>
-        internal static string CannotWriteXml {
-            get {
-                return ResourceManager.GetString("CannotWriteXml", resourceCulture);
             }
         }
         
@@ -196,27 +160,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IXATTR_ENCODING 	ISO8859_1
-        ///DOCTYPE 		PDF
-        ///COMP 			1.pdf 	application/pdf     {0}
-        ///DMS_DOCTYPE		tnt.ican:consignment.
-        /// </summary>
-        internal static string CommandsFileTemplate {
-            get {
-                return ResourceManager.GetString("CommandsFileTemplate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copying document....
-        /// </summary>
-        internal static string CopyingDocument {
-            get {
-                return ResourceManager.GetString("CopyingDocument", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not determine directory path of Assembly..
         /// </summary>
         internal static string CouldNotDetermineDirectoryPathOfAssembly {
@@ -235,38 +178,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deleting existing file &quot;{0}&quot;....
-        /// </summary>
-        internal static string DeletingExistingFile {
-            get {
-                return ResourceManager.GetString("DeletingExistingFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to create directory &quot;{0}&quot; after {1} retries..
-        /// </summary>
-        internal static string DirectoryCreationMaxFailure {
-            get {
-                return ResourceManager.GetString("DirectoryCreationMaxFailure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Document Class:.
         /// </summary>
         internal static string DocClassLabelText {
             get {
                 return ResourceManager.GetString("DocClassLabelText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error copying document to working directory.  Attempt: {0}. {1}.
-        /// </summary>
-        internal static string ErrorCopyingDocument {
-            get {
-                return ResourceManager.GetString("ErrorCopyingDocument", resourceCulture);
             }
         }
         
@@ -280,65 +196,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error finalising export: {0}.  {1}.
-        /// </summary>
-        internal static string ErrorFinalisingExport {
-            get {
-                return ResourceManager.GetString("ErrorFinalisingExport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error moving document to final destination.  Attempt: {0}. {1}.
-        /// </summary>
-        internal static string ErrorMovingDoc {
-            get {
-                return ResourceManager.GetString("ErrorMovingDoc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error writing text to final destination.  Attempt: {0}. {1}.
         /// </summary>
         internal static string ErrorWritingText {
             get {
                 return ResourceManager.GetString("ErrorWritingText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error XML to final destination.  Attempt: {0}. {1}.
-        /// </summary>
-        internal static string ErrorWritingXml {
-            get {
-                return ResourceManager.GetString("ErrorWritingXml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Field Name.
-        /// </summary>
-        internal static string FieldNameColumnHeaderText {
-            get {
-                return ResourceManager.GetString("FieldNameColumnHeaderText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Field Type.
-        /// </summary>
-        internal static string FieldTypeColumnHeaderText {
-            get {
-                return ResourceManager.GetString("FieldTypeColumnHeaderText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File copied to &quot;{0}&quot;..
-        /// </summary>
-        internal static string FileCopiedTo {
-            get {
-                return ResourceManager.GetString("FileCopiedTo", resourceCulture);
             }
         }
         
@@ -361,33 +223,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Export Connector cannot be assigned to the document class due to the following errors:.
-        /// </summary>
-        internal static string IncompatibleDocClassDescription {
-            get {
-                return ResourceManager.GetString("IncompatibleDocClassDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Index.
-        /// </summary>
-        internal static string IndexFieldTypeFriendlyName {
-            get {
-                return ResourceManager.GetString("IndexFieldTypeFriendlyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Index File Contents.
-        /// </summary>
-        internal static string IndexFileContentsLabelText {
-            get {
-                return ResourceManager.GetString("IndexFileContentsLabelText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current settings are invalid: 
         ///
         ///{0}.
@@ -399,47 +234,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is document okay for output: {0}..
-        /// </summary>
-        internal static string IsDocOkayForOutput {
-            get {
-                return ResourceManager.GetString("IsDocOkayForOutput", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ATTRIBUTES	DMS_DOCTYPE|tnt:{0}|{1}|{2}|.
-        /// </summary>
-        internal static string IxattrLineTemplate {
-            get {
-                return ResourceManager.GetString("IxattrLineTemplate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kofax.
-        /// </summary>
-        internal static string KofaxFieldTypeFriendlyName {
-            get {
-                return ResourceManager.GetString("KofaxFieldTypeFriendlyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Logs directory path &quot;{0}&quot; does not exist..
         /// </summary>
         internal static string LogDirectoryDoesNotExist {
             get {
                 return ResourceManager.GetString("LogDirectoryDoesNotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Missing indexFieldMappings element..
-        /// </summary>
-        internal static string MissingIndexFieldMappingsElement {
-            get {
-                return ResourceManager.GetString("MissingIndexFieldMappingsElement", resourceCulture);
             }
         }
         
@@ -471,15 +270,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Moving file &quot;{0}&quot; to &quot;{1}&quot;....
-        /// </summary>
-        internal static string MovingFile {
-            get {
-                return ResourceManager.GetString("MovingFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         internal static string NameLabelText {
@@ -495,15 +285,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
             get {
                 object obj = ResourceManager.GetObject("NextPage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No ConNumber index fields with values were found..
-        /// </summary>
-        internal static string NoConNumberFieldsExist {
-            get {
-                return ResourceManager.GetString("NoConNumberFieldsExist", resourceCulture);
             }
         }
         
@@ -580,15 +361,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PDF.
-        /// </summary>
-        internal static string PdfText {
-            get {
-                return ResourceManager.GetString("PdfText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PrevPage {
@@ -644,15 +416,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create temp file after {0} retries..
-        /// </summary>
-        internal static string UnableToCreateTemp {
-            get {
-                return ResourceManager.GetString("UnableToCreateTemp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;Unknown Assembly Value&gt;.
         /// </summary>
         internal static string UnknownAssemblyValue {
@@ -667,24 +430,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         internal static string UnsupportedGenericType {
             get {
                 return ResourceManager.GetString("UnsupportedGenericType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Field Name.
-        /// </summary>
-        internal static string ValueNameColumnHeaderText {
-            get {
-                return ResourceManager.GetString("ValueNameColumnHeaderText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Field Type.
-        /// </summary>
-        internal static string ValueTypeColumnHeaderText {
-            get {
-                return ResourceManager.GetString("ValueTypeColumnHeaderText", resourceCulture);
             }
         }
         

@@ -19,7 +19,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         ///</summary>
         public TestContext TestContext
         {
-            get { return _testContext; }
+            get => _testContext;
             set
             {
                 _testContext = value;

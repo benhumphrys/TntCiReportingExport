@@ -27,9 +27,9 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// <returns>Assembly details.</returns>
         public static AssemblyDetails GetAssemblyDetails(Assembly targetAssembly)
         {
-            if (targetAssembly == null) throw new ArgumentNullException("targetAssembly");
+            if (targetAssembly == null) throw new ArgumentNullException(nameof(targetAssembly));
 
-            var splitFullName = targetAssembly.FullName.Split(new[] { ',' });
+            var splitFullName = targetAssembly.FullName.Split(',');
             var name = splitFullName[AssemblyNameElement].Trim();
             var versionNumber = splitFullName[AssemblyVersionElement].Replace(" Version=", string.Empty);
             var fileVersion = Resources.UnknownAssemblyValue;
@@ -52,24 +52,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         }
 
         /// <summary>
-        /// Delete the specified file.  Ignore IO errors.
-        /// </summary>
-        /// <param name="filePath">File path to delete.</param>
-        public static void DeleteNonCriticalFile(string filePath)
-        {
-            if (string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-
-            try
-            {
-                File.Delete(filePath);
-            }
-            catch (IOException)
-            {
-                // Ignore errors that occur during deletion as they are non-critical.
-            }
-        }
-
-        /// <summary>
         /// Get the file path of the specified associated file.
         /// </summary>
         /// <param name="associatedFileName">Associated file name.</param>
@@ -77,7 +59,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// <remarks>An associated file is one located in the same directory as the executing Assembly.</remarks>
         public static string GetAssociatedFilePath(string associatedFileName)
         {
-            if (string.IsNullOrEmpty(associatedFileName)) throw new ArgumentNullException("associatedFileName");
+            if (string.IsNullOrEmpty(associatedFileName)) throw new ArgumentNullException(nameof(associatedFileName));
 
             var assemblyDirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -108,7 +90,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         /// <param name="targetControl"></param>
         public static void SetSystemFont(Control targetControl)
         {
-            if (targetControl == null) throw new ArgumentNullException("targetControl");
+            if (targetControl == null) throw new ArgumentNullException(nameof(targetControl));
 
             targetControl.SuspendLayout();
             targetControl.Font = SystemFonts.MessageBoxFont;
@@ -162,7 +144,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
                 var directoryPath = GetLogsDirectory();
                 var processId = Process.GetCurrentProcess().Id;
                 return Path.Combine(directoryPath,
-                    string.Format("Release_[{0}]_{1}.txt", processId, DateTime.Now.ToString("yyMMdd")));
+                    $"Release_[{processId}]_{DateTime.Now:yyMMdd}.txt");
             }
 
             return null;

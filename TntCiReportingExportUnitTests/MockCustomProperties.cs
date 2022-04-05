@@ -90,10 +90,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         /// <summary>
         /// Gets the number of items in the collection.
         /// </summary>
-        public int Count
-        {
-            get { return _collection.Count; }
-        }
+        public int Count => _collection.Count;
 
         /// <summary>
         /// Indicates if the collection is read-only.

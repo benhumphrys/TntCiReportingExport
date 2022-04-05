@@ -36,8 +36,8 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         /// <param name="key">Key to the item.</param>
         public void Add(T item, string key)
         {
-            if (item == null) throw new ArgumentNullException("item");
-            if (key == null) throw new ArgumentNullException("key");
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            if (key == null) throw new ArgumentNullException(nameof(key));
 
             _items.Add(key, item);
         }
@@ -57,7 +57,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
             }
             else
             {
-                throw new ArgumentException(string.Format(Resources.ElementWithKeyNotFound, keyString), "key");
+                throw new ArgumentException(string.Format(Resources.ElementWithKeyNotFound, keyString), nameof(key));
             }
         }
 
@@ -83,7 +83,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
                 }
             }
 
-            if (keyString == null) throw new ArgumentException(string.Format(Resources.UnsupportedKeyType, key), "key");
+            if (keyString == null) throw new ArgumentException(string.Format(Resources.UnsupportedKeyType, key), nameof(key));
 
             return keyString;
         }
@@ -103,13 +103,13 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
                 return _items[keyString];
             }
             
-            throw new ArgumentException(string.Format(Resources.ElementWithKeyNotFound, keyString), "key");
+            throw new ArgumentException(string.Format(Resources.ElementWithKeyNotFound, keyString), nameof(key));
         }
 
         /// <summary>
         /// Gets the number of items in the collection.
         /// </summary>
-        public int Count { get { return _items.Count; }}
+        public int Count => _items.Count;
 
         /// <summary>
         /// Indicates if the collection is read-only.

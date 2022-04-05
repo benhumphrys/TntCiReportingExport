@@ -444,7 +444,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         /// <returns>MD5 hash.</returns>
         public static string GetMd5Hash(string content)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
 
             var rawBytes = new UnicodeEncoding().GetBytes(content);
             var md5 = GetMd5Hash(rawBytes);
@@ -458,7 +458,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExportUnitTests
         /// <returns>Hexadecimal representation of the MD5 hash.</returns>
         public static string GetMd5Hash(byte[] input)
         {
-            if (input == null) throw new ArgumentNullException("input");
+            if (input == null) throw new ArgumentNullException(nameof(input));
 
             // Create a new instance of the MD5CryptoServiceProvider object.
             using (var md5Hasher = MD5.Create())
