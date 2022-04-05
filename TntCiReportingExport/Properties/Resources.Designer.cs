@@ -352,6 +352,15 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attempting to get report XML....
+        /// </summary>
+        internal static string GettingXml {
+            get {
+                return ResourceManager.GetString("GettingXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Export Connector cannot be assigned to the document class due to the following errors:.
         /// </summary>
         internal static string IncompatibleDocClassDescription {
@@ -495,6 +504,15 @@ namespace Tnt.KofaxCapture.TntCiReportingExport.Properties {
         internal static string NoConNumberFieldsExist {
             get {
                 return ResourceManager.GetString("NoConNumberFieldsExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report XML does not exist..
+        /// </summary>
+        internal static string NoReportXml {
+            get {
+                return ResourceManager.GetString("NoReportXml", resourceCulture);
             }
         }
         

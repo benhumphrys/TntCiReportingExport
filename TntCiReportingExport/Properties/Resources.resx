@@ -333,4 +333,10 @@ DMS_DOCTYPE		tnt.ican:consignment</value>
   <data name="IsDocOkayForOutput" xml:space="preserve">
     <value>Is document okay for output: {0}.</value>
   </data>
+  <data name="GettingXml" xml:space="preserve">
+    <value>Attempting to get report XML...</value>
+  </data>
+  <data name="NoReportXml" xml:space="preserve">
+    <value>Report XML does not exist.</value>
+  </data>
 </root>

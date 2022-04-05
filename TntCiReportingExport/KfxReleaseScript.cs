@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 using Kofax.ReleaseLib;
 using Tnt.KofaxCapture.TntCiReportingExport.Properties;
@@ -17,16 +15,13 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
     ComVisible(true)]
     public class KfxReleaseScript : IKfxReleaseScript, IDisposable
     {
-        private const StringComparison IgnoreCase = StringComparison.InvariantCultureIgnoreCase;
-        private const KfxLinkSourceType BatchVar = KfxLinkSourceType.KFX_REL_BATCHFIELD;
-        private const KfxLinkSourceType IndexVar = KfxLinkSourceType.KFX_REL_INDEXFIELD;
         private const KfxInfoReturnValue DocMessage = KfxInfoReturnValue.KFX_REL_DOC_MESSAGE;
         private const KfxInfoReturnValue ErrorMessage = KfxInfoReturnValue.KFX_REL_DOC_ERROR;
 
         private const int MaximumRetries = 10;
         private const int WaitBetweenRetries = 1 * 1000;
        
-        private readonly string _codeModule = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+        private readonly string _codeModule = MethodBase.GetCurrentMethod()?.DeclaringType?.FullName;
         private readonly CultureInfo _culture = CultureInfo.CurrentCulture;
         
         private bool _disposed;
@@ -34,12 +29,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         private MainSettings _settings;
         private string _customLogFilePath;
         private int _documentCount;
-        private MisAuditData _misAuditData;
-        private string _startTime;
-        private string _batchName;
-        private readonly List<string> _outputFilePaths = new List<string>();
-        private StandardAuditData _standardAuditData;
-        private string _parentBatchName;
 
         /// <summary>
         /// Gets or set the DocumentData.
@@ -74,13 +63,9 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
             SetupCustomLogFilePath();
             LogMessage(Resources.OpeningScript, DocMessage);
             LogMessage(string.Format(_culture, Resources.ProcessingBatch, DocumentData.BatchName), DocMessage);
-
-            _startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            _misAuditData = null;
+            
             _documentCount = 0;
-            _outputFilePaths.Clear();
             _open = true;
-            _standardAuditData = new StandardAuditData();
 
             return KfxReturnValue.KFX_REL_SUCCESS;
         }
@@ -115,13 +100,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
 
                 DocumentData.LogError(0, 0, 0, message, _codeModule + "." + Utility.GetCurrentMethod(), 0);
                 LogMessage(message, ErrorMessage);
-
-                DeleteOutputFilePaths();
                 return KfxReturnValue.KFX_REL_ERROR;
-            }
-            finally
-            {
-                _outputFilePaths.Clear();
             }
         }
 
@@ -142,35 +121,11 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
             if (!_open) throw new ExportException(Resources.BadCloseScriptCall);
 
             _open = false;
-            _outputFilePaths.Clear();
             LogMessage(Resources.ClosingScript, DocMessage);
 
             try
             {
-                // Save the standard audit file.
-                if (_misAuditData != null && _misAuditData.TotalDocumentCount > 0)
-                {
-                    OutputStandardAuditXml();
 
-                    var auditMkrFilePath = GetMeridioFilePath("AuditMarker", "mkr");
-                    WriteTextToDisk(auditMkrFilePath, string.Empty);
-                }
-                
-                // Output the MIS audit XML if required.
-                if (_misAuditData != null)
-                {
-                    OutputMisAuditXml(_misAuditData);
-                }
-
-                return KfxReturnValue.KFX_REL_SUCCESS;
-            }
-            catch (Exception ex)
-            {
-                var message = string.Format(Resources.ErrorFinalisingExport, ex.Message, ex.InnerException ?? ex);
-                DocumentData.LogError(0, 0, 0, message, _codeModule + "." + Utility.GetCurrentMethod(), 0);
-                LogMessage(message, ErrorMessage);
-
-                DeleteOutputFilePaths();
                 return KfxReturnValue.KFX_REL_SUCCESS;
             }
             finally
@@ -189,7 +144,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         {
             Dispose(true);
             // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
+            // Therefore, you should call GC.SuppressFinalize to
             // take this object off the finalization queue
             // and prevent finalization code for this object
             // from executing a second time.
@@ -246,213 +201,37 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
             // Get the settings and arrange the link values so that they are easy to retrieve.
             ReadSettings();
 
-            if (_misAuditData == null)
-            {
-                // If this is the first document, create the batch-level data.
-                _misAuditData = GetMisAuditData("B_MISA6AuditPath", "TntCiReportingExport");
-                _standardAuditData = GetStandardAuditData();
-            }
-
-            // Determine if we can run for this document, or whether to skip output.
-            var docOkayToOutput = IsDocOkayForOutput();
-            LogMessage(string.Format(Resources.IsDocOkayForOutput, docOkayToOutput), DocMessage);
-
-            // No more processing for this document if we are skipping it.
-            if (!docOkayToOutput) return;
-
-            // Record the document's number of images.
-            _misAuditData.TotalDocumentCount++;
-            _misAuditData.TotalImageCount += DocumentData.ImageFiles.Count;
-
-            // Copy the image to the output directory.
-            var paddedDocCount = PaddedDocumentCount;
-            var tiffFilePath = GetMeridioFilePath("BatchImage", "tif", paddedDocCount);
-            CopyDocumentToOutputDirectory(_settings.OutputDirectoryPath, tiffFilePath);
-
-            // Save the XML document (i.e. one XML document for each TIFF).
-            SaveMeridioFile(tiffFilePath);
-
-            // write the Meridio MKR file.
-            var meridioMkrFilePath = GetMeridioFilePath("BatchMarker", "mkr", paddedDocCount);
-            WriteTextToDisk(meridioMkrFilePath, string.Empty);
-        }
-
-        /// <summary>
-        /// Output the standard audit XML.
-        /// </summary>
-        private void OutputStandardAuditXml()
-        {
-            var auditFilePath = GetMeridioFilePath("AuditReport", "xml");
-            var standardAuditGenerator = new StandardAuditGenerator(_standardAuditData, (s, v) => LogMessage(s, v));
-            standardAuditGenerator.Save(auditFilePath);
-        }
-
-        /// <summary>
-        /// Get the standard audit data.
-        /// </summary>
-        /// <returns>Standard audit data.</returns>
-        private StandardAuditData GetStandardAuditData()
-        {
-            var batchDateTime = _settings.GetFieldValue<DateTime>("B_ScanDateTime", BatchVar, true);
-
-            var standardAuditData = new StandardAuditData
-            {
-                DomainAndUserName = _settings.GetFieldValue("B_DomainAndUserName", BatchVar),
-                MachineName = _settings.GetFieldValue("B_WorkstationName", BatchVar),
-                Date = batchDateTime.ToString("dd/MM/yyyy"),
-                Time = batchDateTime.ToString("HH:mm:ss")
-            };
-            return standardAuditData;
-        }
-
-        /// <summary>
-        /// Generate and output the audit XML using the specify details.
-        /// </summary>
-        /// <param name="auditData">Audit XML details.</param>
-        private void OutputMisAuditXml(MisAuditData auditData)
-        {
-            if (auditData == null) throw new ArgumentNullException(nameof(auditData));
-
-            var misGenerator = new MisAuditGenerator(_parentBatchName, auditData, (s, v) => LogMessage(s, v), _startTime);
-            misGenerator.Save(auditData.AuditFilePath);
-        }
-
-        /// <summary>
-        /// Save the Meridio XML file.
-        /// </summary>
-        /// <param name="tiffFilePath">File path to the TIFF.</param>
-        private void SaveMeridioFile(string tiffFilePath)
-        {
-            if (tiffFilePath == null) throw new ArgumentNullException(nameof(tiffFilePath));
-
-            // Generate the Meridio data.
-            var meridioGenerator = new MeridioGenerator(_settings, (s, t) => LogMessage(s, t));
-            meridioGenerator.AddDocumentLevelData(_settings, tiffFilePath);
-
-            // Get the output file path and write the XML there.
-            var meridioFilePath = GetMeridioFilePath("BatchControl", "xml", PaddedDocumentCount);
-            meridioGenerator.Save(meridioFilePath);
-        }
-
-        /// <summary>
-        /// Gets a Meridio file path.
-        /// </summary>
-        /// <param name="prefix">Prefix to assign.</param>
-        /// <param name="fileExt">File extension.</param>
-        /// <param name="postFix">Post fix to add (if required)</param>
-        /// <returns>Meridio file path.</returns>
-        private string GetMeridioFilePath(string prefix, string fileExt, string postFix = null)
-        {
-            if (prefix == null) throw new ArgumentNullException(nameof(prefix));
-            if (fileExt == null) throw new ArgumentNullException(nameof(fileExt));
-
-            var batchName = new StringBuilder(_batchName.CleanInvalidFileNameChars());
-
-            if (prefix.StartsWith("Audit", IgnoreCase))
-            {
-                batchName[0] = 'A';
-            }
-
-            if (postFix != null)
-            {
-                postFix = "_" + postFix;
-            }
-
-            var meridioFileName = $"{prefix}_{batchName}{postFix}.{fileExt}";
-            var meridioFilePath = Path.Combine(_settings.OutputDirectoryPath, meridioFileName);
-            return meridioFilePath;
-        }
-
-        /// <summary>
-        /// Determine if the document is okay to output.
-        /// </summary>
-        /// <returns>True if the document should be output; false if not.</returns>
-        private bool IsDocOkayForOutput()
-        {
-            var docStatusValue = _settings.GetFieldValue("DocStatus", IndexVar);
-            var rejectValue = _settings.GetFieldValue("Reject", IndexVar);
-            var pacsDocumentIdRawValue = _settings.GetFieldValue("PACSDocumentID", IndexVar);
-            int pacsDocumentIdValue;
-
-            return docStatusValue.Equals("SUCCESS", IgnoreCase) &&
-                   rejectValue.Equals("NO", IgnoreCase) &&
-                   pacsDocumentIdRawValue != null &&
-                   int.TryParse(pacsDocumentIdRawValue, out pacsDocumentIdValue) &&
-                   pacsDocumentIdValue > 0;
-        }
-
-        /// <summary>
-        /// Generate audit details for output during CloseScript().
-        /// </summary>
-        /// <param name="auditPathBatchFieldName">Audit path batch field name.</param>
-        /// <param name="fallbackAuditDirectoryName">fallback audit directory name (used if the auditPathBatchFieldName
-        /// batch field does not exist).</param>
-        /// <returns>We generate part of the audit detail during ReleaseDoc() because index field values are not
-        /// available during CloseScript().</returns>
-        private MisAuditData GetMisAuditData(string auditPathBatchFieldName, 
-                                             string fallbackAuditDirectoryName)
-        {
-            if (auditPathBatchFieldName == null) throw new ArgumentNullException(nameof(auditPathBatchFieldName));
-            if (fallbackAuditDirectoryName == null) throw new ArgumentNullException(nameof(fallbackAuditDirectoryName));
-
-            var computerName = Environment.MachineName.CleanInvalidFileNameChars();
-            var batchName = _settings.BatchName.CleanInvalidFileNameChars();
-            var auditFileName = $"{computerName}_A6.RELEASE.EXE_{batchName}_0.XML";
-            var auditDirectoryPath = GetAuditDirectoryPath(auditPathBatchFieldName, fallbackAuditDirectoryName);
-
-            var auditDetails = new MisAuditData()
-            {
-                AuditFilePath = Path.Combine(auditDirectoryPath, auditFileName),
-                ScanDepot = _settings.GetFieldValue("B_ScanDepot", BatchVar, true),
-                ScanDate = _settings.GetFieldValue<DateTime>("B_ScanDateTime", BatchVar, true).ToString("yyyy-MM-dd HH:mm:ss"),
-                BatchType = _settings.GetFieldValue("B_DocumentType", BatchVar, true),
-                RoundId = _settings.GetFieldValue("B_RoundID", BatchVar, true),
-            };
-            return auditDetails;
-        }
-
-        /// <summary>
-        /// Retrieve the audit directory path.
-        /// </summary>
-        /// <param name="auditPathBatchFieldName">Audit path batch field name.</param>
-        /// <param name="fallbackAuditDirectoryName">fallback audit directory name (used if the auditPathBatchFieldName
-        /// batch field does not exist).</param>
-        /// <returns>Audit directory path.</returns>
-        private string GetAuditDirectoryPath(string auditPathBatchFieldName, string fallbackAuditDirectoryName)
-        {
-            var auditDirectoryPath = _settings.GetFieldValue(auditPathBatchFieldName, BatchVar);
-
-            var commonAppPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData,
-                Environment.SpecialFolderOption.DoNotVerify);
-            var fallbackDirectoryPath = Path.Combine(commonAppPath, fallbackAuditDirectoryName);
-
-            if (string.IsNullOrEmpty(auditDirectoryPath))
-            {
-                auditDirectoryPath = fallbackDirectoryPath;
-            }
-
-            if (!Directory.Exists(auditDirectoryPath))
+            string GetReportXml()
             {
                 try
                 {
-                    CreateDirectory(auditDirectoryPath);
+                    LogMessage(Resources.GettingXml, DocMessage);
+                    // ReSharper disable once UseIndexedProperty
+                    return DocumentData.get_DocumentCustomStorageString("TntKtmQaQcReport");
                 }
-                catch (ExportException)
+                catch (COMException)
                 {
-                    // Can't create the audit directory.  Default to fallback, or if already using fallback, 
-                    // theow exception as we're unable to write anything.
-                    if (auditDirectoryPath.Equals(fallbackDirectoryPath, IgnoreCase))
-                    {
-                        throw;
-                    }
-
-                    auditDirectoryPath = fallbackDirectoryPath;
-                    CreateDirectory(auditDirectoryPath);
+                    // Report XMl does not exist.
+                    LogMessage(Resources.NoReportXml, DocMessage);
+                    return null;
                 }
             }
-            return auditDirectoryPath;
-        }
 
+            // Read the document-level CSS, if it exists, and output it to disk.  If it does not exist, do
+            // nothing.
+            var reportXml = GetReportXml();
+
+            if (!string.IsNullOrEmpty(reportXml))
+            {
+                var computerName = Environment.MachineName.CleanInvalidFileNameChars();
+                var batchName = DocumentData.BatchName.CleanInvalidFileNameChars();
+                var reportFileName = $"{computerName}_QAQC_{batchName}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+                var reportFilePath = Path.Combine(_settings.OutputDirectoryPath, reportFileName);
+                LogMessage(string.Format(Resources.WritingXml, reportFilePath), DocMessage);
+                WriteTextToDisk(reportFilePath, reportXml);
+            }
+        }
+        
         /// <summary>
         /// Attempt to get the log file path for use during CloseScript() (as SendMessage() won't work there).
         /// </summary>
@@ -502,147 +281,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
                 }
             }
         }
-
-        /// <summary>
-        /// Copy the document file to the directory.
-        /// </summary>
-        /// <param name="workingDirectoryPath">Directory path to copy the document to.</param>
-        /// <param name="documentFilePath">Path to move the released document to after Kofax has copied it.</param>
-        /// <returns>Path to the document.</returns>
-        private void CopyDocumentToOutputDirectory(string workingDirectoryPath, string documentFilePath)
-        {
-            if (string.IsNullOrEmpty(workingDirectoryPath)) throw new ArgumentNullException(nameof(workingDirectoryPath));
-            if (string.IsNullOrEmpty(documentFilePath)) throw new ArgumentNullException(nameof(documentFilePath));
-
-            var complete = false;
-            var attempts = 0;
-
-            while (!complete && attempts < MaximumRetries)
-            {
-                attempts++;
-
-                try
-                {
-                    LogMessage(Resources.CopyingDocument, DocMessage);
-
-                    // Output the TIFF file.
-                    DocumentData.ImageFiles.Copy(workingDirectoryPath);
-                    var sourceFilePath = DocumentData.ImageFiles.ReleasedDirectory;
-
-                    CheckFileCopied(sourceFilePath);
-                    _outputFilePaths.Add(sourceFilePath);
-                    LogMessage(string.Format(Resources.FileCopiedTo, sourceFilePath), DocMessage);
-
-                    MoveFile(sourceFilePath, documentFilePath);
-                    _outputFilePaths[_outputFilePaths.Count - 1] = documentFilePath;
-                    complete = true;
-                }
-                catch (COMException ex)
-                {
-                    LogMessage(string.Format(_culture, Resources.ErrorCopyingDocument, attempts, ex.Message), DocMessage);
-
-                    if (attempts < MaximumRetries)
-                    {
-                        Thread.Sleep(WaitBetweenRetries);
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                catch (IOException ex)
-                {
-                    LogMessage(string.Format(_culture, Resources.ErrorMovingDoc, attempts, ex.Message), DocMessage);
-
-                    if (attempts < MaximumRetries)
-                    {
-                        Thread.Sleep(WaitBetweenRetries);
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Create the specified directory.
-        /// </summary>
-        /// <param name="directoryPath">Path to the directory to create.</param>
-        private static void CreateDirectory(string directoryPath)
-        {
-            if (directoryPath == null) throw new ArgumentNullException(nameof(directoryPath));
-
-            var retries = 0;
-
-            while (retries < MaximumRetries)
-            {
-                try
-                {
-                    Directory.CreateDirectory(directoryPath);
-                    return;
-                }
-                catch (IOException)
-                {
-                    retries++;
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    retries++;
-                }
-                catch (ArgumentException)
-                {
-                    retries++;
-                }
-                catch (NotSupportedException)
-                {
-                    retries++;
-                }
-
-                Thread.Sleep(WaitBetweenRetries);
-            }
-
-            throw new ExportException(string.Format(Resources.DirectoryCreationMaxFailure, directoryPath,
-                MaximumRetries));
-        }
-
-        /// <summary>
-        /// Move the specified source file to the destination file, deleting the destination first if it already exists.
-        /// </summary>
-        /// <param name="sourceFilePath">Source file path.</param>
-        /// <param name="destFilePath">Destination file path.</param>
-        private void MoveFile(string sourceFilePath, string destFilePath)
-        {
-            if (sourceFilePath == null) throw new ArgumentNullException(nameof(sourceFilePath));
-            if (destFilePath == null) throw new ArgumentNullException(nameof(destFilePath));
-
-            LogMessage(string.Format(_culture, Resources.MovingFile, sourceFilePath, destFilePath), DocMessage);
-            if (File.Exists(destFilePath))
-            {
-                LogMessage(string.Format(_culture, Resources.DeletingExistingFile, destFilePath), DocMessage);
-                File.Delete(destFilePath);
-            }
-
-            File.Move(sourceFilePath, destFilePath);
-        }
-
-        /// <summary>
-        /// Check that the specified file has been copied and exists on disk.
-        /// </summary>
-        /// <param name="filePath">File path to check.</param>
-        private void CheckFileCopied(string filePath)
-        {
-            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
-
-            if (!File.Exists(filePath))
-            {
-                throw new ExportException(string.Format(_culture, Resources.CouldNotFindExpectedFile,
-                                                              filePath));
-            }
-        }
-
+        
         /// <summary>
         /// Get the settings required for release.
         /// </summary>
@@ -650,8 +289,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
         {
             LogMessage(Resources.GettingSettings, DocMessage);
             _settings = new MainSettings(DocumentData);
-            _batchName = _settings.GetFieldValue("ExternalBatchName", IndexVar, true);
-            _parentBatchName = _settings.GetFieldValue("B_ParentBatchName", BatchVar, true);
         }
         
         /// <summary>
@@ -698,17 +335,6 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
             catch (Exception)
             {
                 // Never error when writing to the log.
-            }
-        }
-
-        /// <summary>
-        /// Delete the output file paths.
-        /// </summary>
-        private void DeleteOutputFilePaths()
-        {
-            foreach (var outputFilePath in _outputFilePaths)
-            {
-                Utility.DeleteNonCriticalFile(outputFilePath);
             }
         }
     }
