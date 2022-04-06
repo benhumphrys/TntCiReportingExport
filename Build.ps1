@@ -1,20 +1,18 @@
 Clear
 
 $buildDirectoryName = "."
-$imageName = "A6.TntExportPacsRel2"
-$containerName = "A6.TntExportPacsRel2"
 $outputArchiveDirectoryPath = "C:\Release"
-$binaryDirectoryPath = ".\A6.TntExportPacsRel2\bin\Release\"
-$binaryFileName = "A6.TntExportPacsRel2.dll"
+$binaryDirectoryPath = ".\TntCiReportingExport\bin\Release\"
+$binaryFileName = "TntCiReportingExport.dll"
 $binaryFilePath = Join-Path -path $binaryDirectoryPath -ChildPath $binaryFileName
 $releasePaths = $binaryDirectoryPath
-$mickeyParentDirectoryPath = "\\Mickey\External Data\stu\TNT - TNT\Commerical Invoice OCR Standard\Source\A6.TntExportPacsRel2"
-#$mickeyParentDirectoryPath = "C:\Misc\A6.TntExportPacsRel2"
+$mickeyParentDirectoryPath = "\\Mickey\External Data\stu\TNT - TNT\Commerical Invoice OCR Standard\Source\TntCiReportingExport"
+#$mickeyParentDirectoryPath = "C:\Misc\TntCiReportingExport"
 
 Write-Host "Starting NuGet server..."
 docker start scansationnuget
 
-msbuild .\A6.TntExportPacsRel2\A6.TntExportPacsRel2.csproj /p:Configuration=Release
+msbuild .\TntCiReportingExport\TntCiReportingExport.csproj /p:Configuration=Release
 
 Write-Host "Opening VPN..."
 rasdial "ScansationVPN" "BenH" '0R2^l$OsqvjK'
