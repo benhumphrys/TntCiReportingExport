@@ -214,7 +214,7 @@ namespace Tnt.KofaxCapture.TntCiReportingExport
 
             var computerName = Environment.MachineName.CleanInvalidFileNameChars();
             var batchName = _settings.BatchName.CleanInvalidFileNameChars();
-            var reportFileName = $"{computerName}_QAQC_{batchName}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+            var reportFileName = $"{computerName}_QAQC_{batchName}_{DateTime.Now:yyyy-MM-dd-HH-mm-ss}.xml";
             var reportFilePath = Path.Combine(_settings.OutputDirectoryPath, reportFileName);
             LogMessage(string.Format(Resources.WritingXml, reportFilePath), DocMessage);
             WriteTextToDisk(reportFilePath, reportXml);
